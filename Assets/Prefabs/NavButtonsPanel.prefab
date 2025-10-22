@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 8464002773811276853}
   - component: {fileID: 8476389102334128420}
   - component: {fileID: 610349074572797076}
+  - component: {fileID: 2533433771084092725}
   m_Layer: 5
   m_Name: NavButtonsPanel
   m_TagString: Untagged
@@ -358,8 +359,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 150, y: 100}
-  m_Spacing: {x: 45, y: 0}
+  m_CellSize: {x: 170, y: 100}
+  m_Spacing: {x: 25, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 4
 --- !u!114 &610349074572797076
@@ -377,6 +378,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0.19607843}
   m_EffectDistance: {x: 1, y: 2}
   m_UseGraphicAlpha: 1
+--- !u!114 &2533433771084092725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813894552856682607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109c41f08973846429af681aea0a30c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Nobi.UiRoundedCorners::Nobi.UiRoundedCorners.ImageWithIndependentRoundedCorners
+  r: {x: 40, y: 40, z: 0, w: 0}
+  rect2props: {x: 0.000030517578, y: -20.00003, z: 321.7336, w: 321.7336}
+  image: {fileID: 8464002773811276853}
 --- !u!1 &2083429475843293750
 GameObject:
   m_ObjectHideFlags: 0
