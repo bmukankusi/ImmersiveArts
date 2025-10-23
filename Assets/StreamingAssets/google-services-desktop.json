@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "870884169887",
+    "firebase_url": "https://immersivearts-f3f52-default-rtdb.firebaseio.com",
+    "project_id": "immersivearts-f3f52",
+    "storage_bucket": "immersivearts-f3f52.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870884169887:android:73e34386d1504fbf9ceaaa",
+        "android_client_info": {
+          "package_name": "com.majixr.immersivearts"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUeSwcJMSUt3d0H0ykKFLo-RoHFpRw5yU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
