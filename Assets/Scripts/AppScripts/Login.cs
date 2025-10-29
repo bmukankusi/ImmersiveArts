@@ -1,215 +1,209 @@
-using System.Collections;
 using System;
+using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase.Auth;
-using Firebase.Extensions;
+using Firebase.Database;
 using TMPro;
 
 public class Login : MonoBehaviour
 {
-    [Header("UI References (assign in Inspector)")]
+    [Header("UI (assign in Inspector)")]
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
     public Button signInButton;
+    public Button viewButton;
+    public TMP_Text viewButtonText; // optional: text on the view/hide button
     public TMP_Text feedbackText;
 
-    // Button + label used to toggle password visibility
-    public Button viewPasswordButton;
-    public TMP_Text viewPasswordButtonText;
-
     [Header("Panels")]
-    public GameObject adminPanel; // assign the admin panel GameObject (inactive by default)
-    public GameObject homePanel;
-    public GameObject loginPanel;
-    public GameObject navButtonsPanel;
+    public Transform panelsParent; // parent that contains gallery admin panels (child names should match galleryId)
 
     [Header("Behavior")]
-    public float loggedInDisplayDuration = 2f;
+    public float feedbackDisplaySeconds = 2f;
 
-    private FirebaseAuth auth;
+    FirebaseAuth auth;
 
     void Start()
     {
         auth = FirebaseAuth.DefaultInstance;
 
-        // Ensure UI references exist
-        if (feedbackText != null)
-            feedbackText.gameObject.SetActive(false);
-
-        if (adminPanel != null)
-            adminPanel.SetActive(false);
-
-        if (signInButton != null)
-            signInButton.onClick.AddListener(OnSignInButtonClicked);
-
-        // Wire the view/hide password button and initialize its label
-        if (viewPasswordButton != null)
-            viewPasswordButton.onClick.AddListener(OnTogglePasswordVisibility);
-
-        if (viewPasswordButtonText != null)
-            viewPasswordButtonText.text = "View";
-
-        // Ensure password input starts in Password content type (hidden)
-        if (passwordInput != null)
-            passwordInput.contentType = TMP_InputField.ContentType.Password;
-
-        navButtonsPanel.SetActive(false);
+        if (signInButton != null) signInButton.onClick.AddListener(OnSignInClicked);
+        if (viewButton != null) viewButton.onClick.AddListener(TogglePasswordVisibility);
+        if (feedbackText != null) feedbackText.gameObject.SetActive(false);
     }
 
     void OnDestroy()
     {
-        if (signInButton != null)
-            signInButton.onClick.RemoveListener(OnSignInButtonClicked);
-
-        if (viewPasswordButton != null)
-            viewPasswordButton.onClick.RemoveListener(OnTogglePasswordVisibility);
+        if (signInButton != null) signInButton.onClick.RemoveListener(OnSignInClicked);
+        if (viewButton != null) viewButton.onClick.RemoveListener(TogglePasswordVisibility);
     }
 
-    // Wire this to the Sign In button (or it will be wired automatically in Start)
-    public void OnSignInButtonClicked()
+    public async void OnSignInClicked()
     {
-        string email = emailInput != null ? emailInput.text.Trim() : string.Empty;
-        string password = passwordInput != null ? passwordInput.text : string.Empty;
+        var email = emailInput != null ? emailInput.text.Trim() : string.Empty;
+        var password = passwordInput != null ? passwordInput.text : string.Empty;
 
-        // Validate mandatory fields
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            ShowFeedback("Email and password are required.", true);
+            StartCoroutine(ShowTemporaryFeedback("Email and password are required.", true, feedbackDisplaySeconds));
             return;
         }
 
-        if (signInButton != null)
-            signInButton.interactable = false;
-
-        ShowFeedback("Signing in...", false);
-
-        auth.SignInWithEmailAndPasswordAsync(email, password)
-            .ContinueWithOnMainThread(task =>
-            {
-                if (signInButton != null)
-                    signInButton.interactable = true;
-
-                if (task.IsCanceled)
-                {
-                    ShowFeedback("Sign-in canceled.", true);
-                    return;
-                }
-
-                if (task.IsFaulted)
-                {
-                    // Prefer the first inner exception and map it to a friendly message
-                    string rawMessage = "Sign-in failed.";
-                    Exception root = null;
-                    if (task.Exception != null)
-                    {
-                        var inner = task.Exception.Flatten().InnerExceptions;
-                        if (inner != null && inner.Count > 0)
-                            root = inner[0];
-                        else
-                            root = task.Exception;
-                    }
-
-                    if (root != null)
-                        rawMessage = MapFirebaseAuthError(root);
-
-                    ShowFeedback(rawMessage, true);
-                    return;
-                }
-
-                // Success
-                FirebaseUser newUser = task.Result.User;
-                ShowFeedback("Logged In", false);
-                StartCoroutine(OpenAdminPanelAfterDelay(loggedInDisplayDuration));
-            });
-    }
-
-    // Map common Firebase auth exception messages to user-friendly strings
-    private string MapFirebaseAuthError(Exception ex)
-    {
-        if (ex == null)
-            return "Sign-in failed.";
-
-        string msg = ex.Message ?? string.Empty;
-        string lower = msg.ToLowerInvariant();
-
-        if (lower.Contains("password is invalid") || lower.Contains("the password is invalid") || lower.Contains("invalid password") || lower.Contains("wrong password"))
-            return "Incorrect password. Please try again.";
-        if (lower.Contains("no user record") || lower.Contains("no user") && lower.Contains("record") || lower.Contains("user not found") || lower.Contains("there is no user"))
-            return "No account found for that email.";
-        if (lower.Contains("badly formatted") || lower.Contains("invalid email") || lower.Contains("email address is badly"))
-            return "Invalid email address format.";
-        if (lower.Contains("network") || lower.Contains("timeout") || lower.Contains("unreachable host"))
-            return "Network error. Check your internet connection and try again.";
-        if (lower.Contains("email already in use"))
-            return "That email is already registered.";
-        if (lower.Contains("user disabled"))
-            return "This user account has been disabled.";
-        if (lower.Contains("too many requests") || lower.Contains("too many attempts"))
-            return "Too many attempts. Please wait and try again later.";
-
-        // Fall back to the raw message if nothing matched
-        return msg;
-    }
-
-    private IEnumerator OpenAdminPanelAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        // Hide feedback
-        if (feedbackText != null)
-            feedbackText.gameObject.SetActive(false);
-
-        // Activate admin panel if assigned
-        if (adminPanel != null)
+        try
         {
-            adminPanel.SetActive(true);
+            // Sign in with Firebase Auth
+            await auth.SignInWithEmailAndPasswordAsync(email, password);
+
+            var user = auth.CurrentUser;
+            if (user == null)
+            {
+                StartCoroutine(ShowTemporaryFeedback("Sign-in failed.", true, feedbackDisplaySeconds));
+                return;
+            }
+
+            StartCoroutine(ShowTemporaryFeedback("Signed in.", false, feedbackDisplaySeconds));
+
+            // Admin panel / analytics loading is disabled until backend data exists.
+            // To re-enable later, uncomment the following line:
+            _ = LoadGalleryAndAnalyticsForUserAsync(user);
+        }
+        catch (Exception ex)
+        {
+            StartCoroutine(ShowTemporaryFeedback(MapFirebaseAuthError(ex), true, feedbackDisplaySeconds));
+        }
+    }
+
+    async Task LoadGalleryAndAnalyticsForUserAsync(FirebaseUser user)
+    {
+        
+        // Commented out admin panel / analytics loading while no stored data exists.
+        try
+        {
+            string uid = user.UserId;
+
+            // Expecting user's assigned gallery id stored at users/{uid}/galleryId
+            var gallerySnap = await FirebaseDatabase.DefaultInstance.GetReference($"users/{uid}/galleryId").GetValueAsync();
+            if (gallerySnap == null || !gallerySnap.Exists)
+            {
+                StartCoroutine(ShowTemporaryFeedback("No gallery assigned to this user.", true, feedbackDisplaySeconds));
+                return;
+            }
+
+            string galleryId = gallerySnap.Value?.ToString() ?? string.Empty;
+            if (string.IsNullOrEmpty(galleryId))
+            {
+                StartCoroutine(ShowTemporaryFeedback("Invalid gallery id.", true, feedbackDisplaySeconds));
+                return;
+            }
+
+            // Fetch analytics stored under analytics/{galleryId}/...
+            var analyticsRef = FirebaseDatabase.DefaultInstance.GetReference($"analytics/{galleryId}");
+            var analyticsSnap = await analyticsRef.GetValueAsync();
+
+            int totalDailyScans = 0;
+            double averageUsers = 0.0;
+            int monthlyInteractingUsers = 0;
+
+            if (analyticsSnap != null && analyticsSnap.Exists)
+            {
+                // safe parsing for expected fields
+                if (analyticsSnap.Child("totalDailyScans")?.Exists == true)
+                    int.TryParse(analyticsSnap.Child("totalDailyScans").Value?.ToString(), out totalDailyScans);
+
+                if (analyticsSnap.Child("averageUsers")?.Exists == true)
+                    double.TryParse(analyticsSnap.Child("averageUsers").Value?.ToString(), out averageUsers);
+
+                if (analyticsSnap.Child("monthlyInteractingUsers")?.Exists == true)
+                    int.TryParse(analyticsSnap.Child("monthlyInteractingUsers").Value?.ToString(), out monthlyInteractingUsers);
+            }
+
+            // Persist analytics for other scripts to read (or use another IPC mechanism)
+            PlayerPrefs.SetInt($"analytics_{galleryId}_totalDailyScans", totalDailyScans);
+            PlayerPrefs.SetFloat($"analytics_{galleryId}_averageUsers", (float)averageUsers);
+            PlayerPrefs.SetInt($"analytics_{galleryId}_monthlyInteractingUsers", monthlyInteractingUsers);
+            PlayerPrefs.Save();
+
+            // Activate the corresponding panel (child name must match galleryId)
+            if (panelsParent != null)
+            {
+                var panel = panelsParent.Find(galleryId);
+                if (panel != null)
+                {
+                    // hide others first
+                    foreach (Transform t in panelsParent) t.gameObject.SetActive(false);
+                    panel.gameObject.SetActive(true);
+                }
+                else
+                {
+                    StartCoroutine(ShowTemporaryFeedback("Gallery admin panel not found.", true, feedbackDisplaySeconds));
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            StartCoroutine(ShowTemporaryFeedback("Failed to load analytics: " + ex.Message, true, feedbackDisplaySeconds));
+        }
+        
+
+        // Keep method valid while disabled:
+        await Task.CompletedTask;
+    }
+
+    // Toggle between showing and hiding password text
+    void TogglePasswordVisibility()
+    {
+        if (passwordInput == null) return;
+
+        var current = passwordInput.contentType;
+        if (current == TMP_InputField.ContentType.Password || current == TMP_InputField.ContentType.Pin)
+        {
+            passwordInput.contentType = TMP_InputField.ContentType.Standard;
+            if (viewButtonText != null) viewButtonText.text = "Hide";
         }
         else
         {
-            Debug.LogWarning("Login: adminPanel is not assigned. You may want to load an admin scene instead.");
+            passwordInput.contentType = TMP_InputField.ContentType.Password;
+            if (viewButtonText != null) viewButtonText.text = "View";
         }
+
+        // Refresh the visual state
+        passwordInput.ForceLabelUpdate();
+        passwordInput.ActivateInputField();
     }
 
-    private void ShowFeedback(string message, bool isError)
+    private System.Collections.IEnumerator ShowTemporaryFeedback(string message, bool isError, float duration)
     {
         if (feedbackText == null)
         {
             Debug.Log(isError ? "Error: " + message : message);
-            return;
+            yield break;
         }
 
         feedbackText.text = message;
         feedbackText.color = isError ? Color.red : Color.green;
         feedbackText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(duration);
+
+        feedbackText.gameObject.SetActive(false);
     }
 
-    // Toggle password visibility when the View/Hide button is clicked
-    public void OnTogglePasswordVisibility()
+    // Minimal error mapping — extend as needed
+    private string MapFirebaseAuthError(Exception ex)
     {
-        if (passwordInput == null)
-            return;
-
-        bool currentlyHidden = passwordInput.contentType == TMP_InputField.ContentType.Password;
-
-        // Toggle between Password (hidden) and Standard (visible)
-        passwordInput.contentType = currentlyHidden ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
-
-        // Force the input field to apply the new content type and keep focus
-        passwordInput.ForceLabelUpdate();
-        passwordInput.ActivateInputField();
-        passwordInput.caretPosition = passwordInput.text.Length;
-
-        // Update button label if provided
-        if (viewPasswordButtonText != null)
-            viewPasswordButtonText.text = currentlyHidden ? "Hide" : "View";
-    }
-
-    //Back to home panel
-    public void ShowHomePanel()
-    {
-        homePanel.SetActive(true);
-        loginPanel.SetActive(false);
-        navButtonsPanel.SetActive(true);
+        if (ex == null) return "An unknown error occurred.";
+        var msg = ex.Message ?? ex.ToString();
+        var lower = msg.ToLowerInvariant();
+        if (lower.Contains("invalid email") || lower.Contains("badly formatted") || lower.Contains("email address is badly"))
+            return "Invalid email address format.";
+        if (lower.Contains("password is invalid") || lower.Contains("wrong password") || lower.Contains("invalid password"))
+            return "Incorrect password.";
+        if (lower.Contains("user not found") || lower.Contains("no user record"))
+            return "User not found.";
+        if (lower.Contains("network"))
+            return "Network error. Check your connection and try again.";
+        return msg;
     }
 }

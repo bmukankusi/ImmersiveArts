@@ -3,78 +3,91 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    [Header("Panels")]
-    public GameObject sideMenuPanel;
-    public GameObject dashboardPanel;
-    public GameObject artworkmgtPanel;
-    public GameObject adminSettingsPanel;
-    public GameObject homePanel;
-    public GameObject navPanel;
+    [Header("UI References")]
+    public Button menuButton;             // Button the user clicks
+    public Image menuIcon;                // Image component to swap sprites
+    public Sprite menuOpenSprite;         // Sprite shown when menu is closed (hint: show "open" icon)
+    public Sprite menuCloseSprite;        // Sprite shown when menu is open (hint: show "close" icon)
+    public RectTransform sidePanel;       // The sliding panel's RectTransform
 
-    [Header("Buttons")]
-    public Button menuToggleButton;
-    public Button closeMenuButton;
-    public Button logoutButton;
+    [Header("Layout")]
+    public bool anchoredFromLeft = true;  // true if panel slides in/out from left
+    public bool startOpen = false;        // whether panel starts opened
+    public float offscreenMargin = 10f;   // extra offset when hiding panel
 
-    [Header("Menu Sprites")]
-    public Sprite menuClosedSprite;
-    public Sprite menuOpenSprite;
+    private Vector2 openedPos;
+    private Vector2 closedPos;
+    private bool isOpen;
 
-    Image _menuImage;
+    void Awake()
+    {
+        // auto-wire common references
+        if (menuButton == null)
+            menuButton = GetComponent<Button>();
+
+        if (menuIcon == null && menuButton != null)
+            menuIcon = menuButton.GetComponent<Image>();
+    }
 
     void Start()
     {
-        _menuImage = menuToggleButton?.GetComponent<Image>();
+        if (sidePanel == null)
+        {
+            Debug.LogError("MenuManager: sidePanel is not assigned.");
+            enabled = false;
+            return;
+        }
 
-        // initialize
-        SetMenuSprite(false);
-        closeMenuButton?.onClick.AddListener(() => SetMenuState(false));
-        menuToggleButton?.onClick.AddListener(ToggleSideMenu);
-        logoutButton?.onClick.AddListener(Logout);
+        if (menuButton == null)
+        {
+            Debug.LogError("MenuManager: menuButton is not assigned.");
+            enabled = false;
+            return;
+        }
+
+        ComputePositions();
+
+        isOpen = startOpen;
+        sidePanel.anchoredPosition = isOpen ? openedPos : closedPos;
+        if (menuIcon != null)
+            menuIcon.sprite = isOpen ? menuCloseSprite : menuOpenSprite;
+
+        menuButton.onClick.AddListener(ToggleMenu);
     }
 
-    // Toggle side menu
-    public void ToggleSideMenu() => SetMenuState(!(sideMenuPanel?.activeSelf ?? false));
-
-    // Set side menu open/closed and update sprite / buttons
-    void SetMenuState(bool open)
+    void OnDestroy()
     {
-        sideMenuPanel?.SetActive(open);
-        SetMenuSprite(open);
-        closeMenuButton?.gameObject.SetActive(open);
-        // keep main toggle visible so sprite change is visible
-        if (menuToggleButton != null) menuToggleButton.gameObject.SetActive(true);
+        if (menuButton != null)
+            menuButton.onClick.RemoveListener(ToggleMenu);
     }
 
-    // Helper to set burger sprite (open/closed)
-    void SetMenuSprite(bool open)
+    // Public API to recompute positions if the panel size/layout changes at runtime
+    public void ComputePositions()
     {
-        if (_menuImage == null) _menuImage = menuToggleButton?.GetComponent<Image>();
-        if (_menuImage != null)
-            _menuImage.sprite = open ? menuOpenSprite ?? _menuImage.sprite : menuClosedSprite ?? _menuImage.sprite;
+        openedPos = sidePanel.anchoredPosition;
+        float width = sidePanel.rect.width;
+        closedPos = openedPos;
+        if (anchoredFromLeft)
+            closedPos.x = openedPos.x - (width + offscreenMargin);
+        else
+            closedPos.x = openedPos.x + (width + offscreenMargin);
     }
 
-    // Show exactly one panel (hides others) and resets menu state
-    void ShowOnly(GameObject panel)
+    public void ToggleMenu()
     {
-        sideMenuPanel?.SetActive(false);
-        dashboardPanel?.SetActive(false);
-        artworkmgtPanel?.SetActive(false);
-        adminSettingsPanel?.SetActive(false);
-        navPanel?.SetActive(false);
-
-        panel?.SetActive(true);
-        SetMenuState(false);
+        SetIsOpen(!isOpen);
     }
 
-    public void OpenDashboardPanel() => ShowOnly(dashboardPanel);
-    public void OpenArtworkmgtPanel() => ShowOnly(artworkmgtPanel);
-    public void OpenAadminSettingsPanel() => ShowOnly(adminSettingsPanel);
-
-    // Logout Function
-    public void Logout()
+    public void SetIsOpen(bool open)
     {
-        Firebase.Auth.FirebaseAuth.DefaultInstance.SignOut();
-        ShowOnly(homePanel);
+        // Recompute in case layout changed
+        ComputePositions();
+
+        sidePanel.anchoredPosition = open ? openedPos : closedPos;
+
+        if (menuIcon != null)
+            menuIcon.sprite = open ? menuCloseSprite : menuOpenSprite;
+
+        isOpen = open;
     }
 }
