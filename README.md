@@ -24,7 +24,7 @@ https://github.com/bmukankusi/ImmersiveArts_NP-Art-Center.git
    c. Admins may log in to manage artworks and view analytics
 
    ### Designs(Figma design)
-  <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/8c5cf952-3391-4e4f-88d1-a506b3bbf51f" />        <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/754c7d9a-0740-4295-beb3-32ce5920fc65" />
+  <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/8c5cf952-3391-4e4f-88d1-a506b3bbf51f" />                  <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/9ea02a03-d24d-457a-9b6c-e9964d772ba1" />
 
   <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/dafa8f60-c2f2-4532-8f23-f728cf48612a" />       <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/b58cffb5-3efd-4826-b137-956b180ecba0" />
   
