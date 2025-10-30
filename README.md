@@ -3,7 +3,7 @@
  ImmersiveArts is an augmented reality (AR) mobile application designed to enhance tourism in Rwanda and East African galleries and museums, and improve user engagement. The app uses AR technology to provide immersive and interactive experiences by overlaying digital content such as 3D models, audios, 2D content, and videos on physical artworks. Admin users (gallery or museum managers) can manage AR content dynamically via a data storing page.
 
  ## Link to Github repo: 
-https://github.com/bmukankusi/ImmersiveArts_NP-Art-Center.git 
+https://github.com/bmukankusi/ImmersiveArts
  
  ## How to set up the environment and the project
  ### Prerequisites
