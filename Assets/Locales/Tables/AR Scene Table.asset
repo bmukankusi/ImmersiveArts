@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: AR Scene Table
+  m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.StringTableCollection
+  m_SharedTableData: {fileID: 11400000, guid: 9abd500d7d3b5204c8b571ff9966cf30, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 6f1976fb64fc262459a88ce02c263108, type: 2}
+  - {fileID: 11400000, guid: 56f250ce451d3cb4890789120e05a74f, type: 2}
+  - {fileID: 11400000, guid: 9693b40713875ea4a8b8044032240b16, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

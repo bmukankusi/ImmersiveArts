@@ -8,8 +8,7 @@ public class AppNavigation : MonoBehaviour
     public GameObject homePanel;
     public GameObject explorePanel;
     public GameObject settingsPanel;
-    public GameObject loginPanel;
-    public GameObject bottomNav;
+    
 
     private GameObject[] panels;
 
@@ -33,12 +32,6 @@ public class AppNavigation : MonoBehaviour
         SetActivePanel(settingsPanel);
     }
 
-    public void ShowLoginPanel()
-    {
-        SetActivePanel(loginPanel);
-        // Hide bottom navigation when showing login panel
-        bottomNav.SetActive(false);
-    }
 
     public void OpenARScene()
     {

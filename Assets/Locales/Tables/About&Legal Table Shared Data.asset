@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: About&Legal Table Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: About&Legal Table
+  m_TableCollectionNameGuidString: 0bfb21e0611b56242a39c4fba76b3758
+  m_Entries:
+  - m_Id: 479433400320
+    m_Key: topText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650300956672
+    m_Key: visionText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552382500864
+    m_Key: visionSubText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935293095936
+    m_Key: npArtSubText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2350411751424
+    m_Key: copyrights
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99597929488384
+    m_Key: noticeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99977857933312
+    m_Key: noteText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100291575095296
+    m_Key: termsText1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100499411247104
+    m_Key: termsSubText1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100864076619776
+    m_Key: termsText2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100899346522112
+    m_Key: termsSubText2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101836345647104
+    m_Key: termsText3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101911037812736
+    m_Key: termsSuText3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101995787919360
+    m_Key: termsText4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102032056066048
+    m_Key: termsSubText4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102075001544704
+    m_Key: termsText5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102107167662080
+    m_Key: termsSubText5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103261381402624
+    m_Key: termsText6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103317639602176
+    m_Key: termsSubText6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103356629852160
+    m_Key: termsText7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103382890389504
+    m_Key: termsSubText7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103452297732096
+    m_Key: termsText8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103477530664960
+    m_Key: termsSubText8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103542244581376
+    m_Key: termsText9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103577199910912
+    m_Key: termsSubText9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103619059064832
+    m_Key: termsText10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103643662852096
+    m_Key: termsSubText10
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3916776654937784392
+  references:
+    version: 2
+    RefIds:
+    - rid: 3916776654937784392
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1761774942734

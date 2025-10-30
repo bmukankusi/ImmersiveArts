@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: About&Legal Table_rw-RW
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: rw-RW
+  m_SharedData: {fileID: 11400000, guid: 0bfb21e0611b56242a39c4fba76b3758, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 479433400320
+    m_Localized: Kuzana ibihangano byu Rwanda mubuzima hakoreshejwe ikoranabuhanga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650300956672
+    m_Localized: Ikerekezo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552382500864
+    m_Localized: "ImmersiveArts ikuraho icyuho kiri hagati yubuhanzi gakondo bwu
+      Rwanda n\u2019ikoranabuhanga rigezweho, bigatanga ubunararibonye bwo kubungabunga
+      umurage gakondo yacu mu gihe bugera ku gisekuru gishya binyuze mu kuri kwagutse."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935293095936
+    m_Localized: "Np Art Gallery mu Rwanda ni umwanya uhagije wahariwe ibihangano
+      bya Afrika. Itanga icyegeranyo gitandukanye cyibikorwa, birimo amashusho, ibishushanyo,
+      hamwe n\u2019ibikorwa byakozwe nabahanzi baho ndetse n\u2019amahanga. Ihuriro
+      ryukuri ryumuco, ingoro iteza imbere ubuhanzi nibiganiro mubaturage."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2350411751424
+    m_Localized: "\xA9 2025 ImmersiveArts. Uburenganzira bwose burabitswe."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99597929488384
+    m_Localized: Icyitonderwa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99977857933312
+    m_Localized: Nyamuneka soma aya magambo n'amabwiriza witonze. Ukoresheje ImmersiveArts,
+      wemera aya mabwiriza, agenga imikoreshereze yawe ya porogaramu kandi akarinda
+      abakoresha ndetse na NP Art Centre.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100291575095296
+    m_Localized: 1. Intangiriro no kwemerwa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100499411247104
+    m_Localized: "Murakaza neza kuri ImmersiveArts, yongerewe ukuri kwakozwe na Betty
+      Mukankusi. Mugukuramo, gushiraho, cyangwa gukoresha iyi porogaramu, wemera
+      kugengwa naya Mabwiriza. Niba utemera kimwe muri aya magambo, nyamuneka ntukoreshe
+      porogaramu. Aya magambo agize amasezerano yemewe hagati yawe (\u201CUmukoresha\u201D)
+      nabategura porogaramu (\u201Ctwe,\u201D \u201Ctwe,\u201D \u201Cuwacu\u201D).
+      Nyamuneka soma aya magambo witonze mbere yo gukoresha porogaramu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100864076619776
+    m_Localized: '2. Ibisobanuro n''intego '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100899346522112
+    m_Localized: "ImmersiveArts yagenewe kunoza uburambe bwubuhanzi bwu Rwanda binyuze
+      mubyukuri byongerewe. Porogaramu igufasha:\r\n\r\n\u2022 Reba ibikorwa byongeweho
+      byukuri bifatika kubikorwa byumubiri\r\n\u2022 Shakisha amakuru arambuye kubyerekeye
+      abahanzi nibikorwa byabo\r\n\u2022 Umva abayobora amajwi n'ibitekerezo byabahanzi\r\n\u2022
+      Kuramo ibikubiyemo kugirango urebe hanze\r\n\u2022 Shakisha icyegeranyo cya
+      digitale\r\n\r\nPorogaramu igenewe intego zo gushima uburezi, umuco, n'ubuhanzi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101836345647104
+    m_Localized: 3. Uburenganzira bwabakoresha ninshingano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101911037812736
+    m_Localized: "Nkumukoresha wa ImmersiveArts, ufite uburenganzira kuri:\r\n\r\n\u2022
+      kugera kubintu byose biranga porogaramu nkuko byasobanuwe\r\n\u2022 kwakira
+      inkunga ya tekiniki no kuvugurura\r\n\u2022 kungukirwa no kurinda ubuzima bwawe
+      bwite ukurikije Politiki Yibanga yacu\r\n\r\nUshinzwe:\r\n\r\n\u2022 ukoresheje
+      porogaramu ukurikije aya magambo\r\n\u2022 kugenzura sisitemu ntoya isabwa
+      kubikoresho byawe\r\n\r\n\u2022 kubika ibanga ryamakuru ya konte yawe\r\n\r\n\u2022
+      kubahiriza uburenganzira bwumutungo wubwenge wimirimo nibirimo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101995787919360
+    m_Localized: 4. Ibanga no gukusanya amakuru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102032056066048
+    m_Localized: "Twiyemeje kurinda ubuzima bwawe bwite. Iyi porogaramu irashobora
+      gukusanya:\r\n\r\n\u2022 Kamera igera kumikorere yukuri (isabwa)\r\n\r\n\u2022
+      Kubika ibikoresho kubikoresho bikururwa (bidashoboka)\r\n\r\n\u2022 Koresha
+      isesengura kugirango utezimbere imikorere ya porogaramu (itazwi)\r\n\r\n\u2022
+      Amakuru ya geolojiya iyo usuye ingoro (bidashoboka)\r\n\r\nNtabwo dukusanya:\r\n\r\n\u2022
+      Umuntu ku giti cye amakuru yamenyekanye atabanje kubiherwa uruhushya\r\n\r\n\u2022
+      Amakuru yo kwishyura (porogaramu ni ubuntu)\r\n\r\n\u2022 Ibiganiro byihariye
+      cyangwa itumanaho\r\n\r\nIkusanyamakuru ryose rigengwa n'amategeko yo kurinda
+      amakuru yu Rwanda hamwe n\u2019ibipimo mpuzamahanga by\u2019ibanga."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102075001544704
+    m_Localized: 5. Uburenganzira ku mutungo bwite mu by'ubwenge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102107167662080
+    m_Localized: "Ibirimo byose muri porogaramu ya ImmersiveArts, harimo ariko ntibigarukira
+      gusa:\r\n\r\n\u2022 Amashusho n'ibisobanuro by'ibihangano\r\n\r\n\u2022 Kuyobora
+      amajwi no kuvuga\r\n\r\n\u2022 Ingaruka zigaragara hamwe na animasiyo yukuri\r\n\r\n\u2022
+      Igishushanyo cya porogaramu na kode\r\n\r\nirinzwe nuburenganzira nuburenganzira
+      bwumutungo wubwenge. Ibikorwa byubuhanzi bigaragara muri porogaramu bikomeza
+      kuba umutungo wabahanzi babo cyangwa icyegeranyo cya NP Art Centre.\r\n\r\nAbakoresha
+      ntibemerewe:\r\n\r\n\u2022 Kwororoka, gukwirakwiza, cyangwa guhindura ibintu
+      byemewe\r\n\r\n\u2022 Koresha ibikubiye mubikorwa byubucuruzi nta ruhushya\r\n\r\n\u2022
+      Hindura injeniyeri cyangwa wandukure imikorere ya porogaramu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103261381402624
+    m_Localized: 6. Amabwiriza yo gukoresha kamera nukuri kwagutse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103317639602176
+    m_Localized: "Iyo ukoresheje kamera yerekana kamera yibiranga:\r\n\r\n\u2022
+      Erekana kamera gusa mubikorwa byabugenewe byerekanwe.\r\n\r\n\u2022 Wubahe
+      abandi bashyitsi n'abakozi.\r\n\r\n\u2022 Kurikiza amategeko ngengamikorere.\r\n\r\n\u2022
+      Ntugafotore cyangwa ngo wandike abantu batabanje kubiherwa uruhushya.\r\n\r\n\u2022
+      Menyesha ibibazo byose bya tekiniki kubakozi.\r\n\r\nUbunararibonye bwukuri
+      bwateguwe kugirango bugushimire ibikorwa byubuhanzi, ntabwo bisimbuye uruzinduko
+      rwumuntu."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103356629852160
+    m_Localized: 7. Kugabanya inshingano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103382890389504
+    m_Localized: "Dutanga ImmersiveArts porogaramu \"nkuko iri,\" nta garanti. Twamaganye
+      inshingano zose kuri:\r\n\r\n\u2022 Ibibazo bya tekiniki cyangwa guhuza nibikoresho
+      byawe\r\n\r\n\u2022 Guhagarika ibikorwa byongerewe ukuri\r\n\r\n\u2022 Gutakaza
+      amakuru cyangwa ruswa\r\n\r\n\u2022 Ibyangiritse biturutse ku gukoresha porogaramu\r\n\r\nInshingano
+      zacu zigarukira ku rugero ntarengwa rwemewe n'amategeko y'u Rwanda."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103452297732096
+    m_Localized: 8. Kuvugurura no guhindura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103477530664960
+    m_Localized: "Dufite uburenganzira bwo:\r\n\r\n\u2022 Kuvugurura porogaramu hamwe
+      nibintu bishya no kunoza\r\n\u2022 Hindura aya mabwiriza, nyuma yo kubimenyesha
+      abakoresha\r\n\r\n\u2022 Ongeraho cyangwa ukureho ibiri mububiko bwa digitale\r\n\r\n\u2022
+      Kuraho ibintu bishaje\r\n\r\nAbakoresha bazamenyeshwa impinduka zikomeye binyuze
+      muri porogaramu cyangwa kuri imeri, nkuko bikwiye."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103542244581376
+    m_Localized: 9. Amategeko akurikizwa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103577199910912
+    m_Localized: "Aya mabwiriza agengwa n'amategeko yu Rwanda. Impaka zose zijyanye
+      no gukoresha iki cyifuzo zizagengwa n\u2019inkiko zo mu Rwanda.\r\n\r\nKu bakoresha
+      mpuzamahanga, amategeko y\u2019ibanze yerekeye kurinda amakuru n\u2019uburenganzira
+      bw\u2019umuguzi arashobora kandi gukurikizwa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103619059064832
+    m_Localized: 10. Ibisobanuro birambuye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103643662852096
+    m_Localized: 'Kubibazo byose bijyanye naya mabwiriza cyangwa porogaramu ya ImmersiveArts,
+      nyamuneka hamagara:
+
+      
+
+      ImmersiveArts
+
+      KG 14 Ave, Kigali,
+      u Rwanda
+
+      
+
+      Tel: +250 791 064 893
+
+      Imeri: immersivearts@gmail.com
+
+      
+
+      Iherutse
+      kuvugururwa: Ukwakira 2025
+
+      Veriziyo: 1.0'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

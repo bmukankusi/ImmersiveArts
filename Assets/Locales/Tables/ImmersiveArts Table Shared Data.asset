@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: ImmersiveArts Table Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: ImmersiveArts Table
+  m_TableCollectionNameGuidString: e0c400da26cd8fb4aa30940181142aea
+  m_Entries:
+  - m_Id: 734816182272
+    m_Key: welcomeText1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 900008845312
+    m_Key: welcomeText2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1719869448192
+    m_Key: startButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1959569727488
+    m_Key: featuredAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2443118452736
+    m_Key: viewAll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2921910837248
+    m_Key: exploreTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3546186850304
+    m_Key: settingsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3921551892480
+    m_Key: settingsSubTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4403087351808
+    m_Key: lgeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4566686179328
+    m_Key: appLgeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4805216247808
+    m_Key: downloadedContentText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5176487649280
+    m_Key: enableDownloads
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5666915033088
+    m_Key: enableDownloadsSubText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6184571838464
+    m_Key: usedStorageText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6367338635264
+    m_Key: downloadedContText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6629105147904
+    m_Key: downloadedContSubText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7094756777984
+    m_Key: appPermissions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151852829450240
+    m_Key: camAccess
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151925583847424
+    m_Key: stoAccess
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152022023479296
+    m_Key: required1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152053774360576
+    m_Key: required2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152243268820992
+    m_Key: aboutText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152334243274752
+    m_Key: aboutImmersive
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152409908518912
+    m_Key: aboutIASubText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152559812943872
+    m_Key: termsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152630277251072
+    m_Key: termsSubText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3916776645627478040
+  references:
+    version: 2
+    RefIds:
+    - rid: 3916776645627478040
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1761737709946

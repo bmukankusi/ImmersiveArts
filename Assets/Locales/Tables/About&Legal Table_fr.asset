@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: About&Legal Table_fr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: 0bfb21e0611b56242a39c4fba76b3758, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 479433400320
+    m_Localized: "Donner vie \xE0 l'art rwandais gr\xE2ce \xE0 la technologie"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650300956672
+    m_Localized: Notre vision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552382500864
+    m_Localized: "ImmersiveArts fait le lien entre l'art traditionnel rwandais et
+      les technologies modernes, cr\xE9ant une exp\xE9rience interactive qui pr\xE9serve
+      notre patrimoine culturel tout en le rendant accessible aux nouvelles g\xE9n\xE9rations
+      gr\xE2ce \xE0 la r\xE9alit\xE9 augment\xE9e."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935293095936
+    m_Localized: "La galerie d'art Np au Rwanda est un espace dynamique d\xE9di\xE9
+      \xE0 l'art contemporain africain. Elle pr\xE9sente une collection vari\xE9e
+      d'\u0153uvres, incluant peintures, sculptures et installations d'artistes locaux
+      et internationaux. V\xE9ritable carrefour culturel, la galerie favorise l'expression
+      artistique et le dialogue au sein de la communaut\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2350411751424
+    m_Localized: "\xA9 2025 ImmersiveArts. Tous droits r\xE9serv\xE9s."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99597929488384
+    m_Localized: "Avis important\_!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99977857933312
+    m_Localized: "Veuillez lire attentivement les pr\xE9sentes conditions. En utilisant
+      ImmersiveArts, vous acceptez ces conditions qui r\xE9gissent votre utilisation
+      de l'application et prot\xE8gent \xE0 la fois les utilisateurs et NP Art Center."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100291575095296
+    m_Localized: 1. Introduction et acceptation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100499411247104
+    m_Localized: "Bienvenue sur ImmersiveArts, une application de r\xE9alit\xE9 augment\xE9e
+      d\xE9velopp\xE9e par Betty Mukankusi. En t\xE9l\xE9chargeant, installant ou
+      utilisant cette application, vous acceptez d'\xEAtre li\xE9 par les pr\xE9sentes
+      Conditions g\xE9n\xE9rales. Si vous n'acceptez pas l'une quelconque de ces
+      conditions, veuillez ne pas utiliser l'application. Ces conditions constituent
+      un accord juridique entre vous (\xAB\_Utilisateur\_\xBB) et les d\xE9veloppeurs
+      de l'application (\xAB\_nous\_\xBB, \xAB\_notre\_\xBB). Veuillez lire attentivement
+      ces conditions avant d'utiliser l'application."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100864076619776
+    m_Localized: 2. Description et objectif de l'application
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100899346522112
+    m_Localized: "ImmersiveArts est con\xE7u pour enrichir votre exp\xE9rience de
+      l'art rwandais gr\xE2ce \xE0 la r\xE9alit\xE9 augment\xE9e. L'application vous
+      permet de\_:\r\n\r\n\u2022 Visualiser des superpositions interactives en r\xE9alit\xE9
+      augment\xE9e sur les \u0153uvres d'art physiques\r\n\u2022 Acc\xE9der \xE0
+      des informations d\xE9taill\xE9es sur les artistes et leurs \u0153uvres\r\n\u2022
+      \xC9couter des guides audio et des commentaires d'artistes\r\n\u2022 T\xE9l\xE9charger
+      du contenu pour une consultation hors ligne\r\n\u2022 Explorer la collection
+      de la galerie num\xE9rique\r\n\r\nL'application est destin\xE9e \xE0 des fins
+      \xE9ducatives, culturelles et d'appr\xE9ciation artistique."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101836345647104
+    m_Localized: "3. Droits et responsabilit\xE9s des utilisateurs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101911037812736
+    m_Localized: "En tant qu'utilisateur d'ImmersiveArts, vous avez le droit\_:\r\n\r\n\u2022
+      d'acc\xE9der \xE0 toutes les fonctionnalit\xE9s de l'application telles que
+      d\xE9crites\r\n\u2022 de recevoir une assistance technique et des mises \xE0
+      jour\r\n\u2022 de b\xE9n\xE9ficier de la protection de votre vie priv\xE9e
+      conform\xE9ment \xE0 notre Politique de confidentialit\xE9\r\n\r\nVous \xEAtes
+      responsable de\_:\r\n\r\n\u2022 l'utilisation de l'application conform\xE9ment
+      aux pr\xE9sentes conditions\r\n\u2022 la v\xE9rification de la configuration
+      minimale requise par votre appareil\r\n\r\n\u2022 la confidentialit\xE9 de
+      vos informations de compte\r\n\r\n\u2022 le respect des droits de propri\xE9t\xE9
+      intellectuelle des \u0153uvres et du contenu"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101995787919360
+    m_Localized: "4. Confidentialit\xE9 et collecte de donn\xE9es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102032056066048
+    m_Localized: "Nous nous engageons \xE0 prot\xE9ger votre vie priv\xE9e. Cette
+      application peut collecter\_:\r\n\r\n\u2022 Acc\xE8s \xE0 la cam\xE9ra pour
+      la fonctionnalit\xE9 de r\xE9alit\xE9 augment\xE9e (obligatoire)\r\n\r\n\u2022
+      Acc\xE8s au stockage de l\u2019appareil pour le t\xE9l\xE9chargement de contenu
+      (facultatif)\r\n\r\n\u2022 Donn\xE9es analytiques d\u2019utilisation pour am\xE9liorer
+      les performances de l\u2019application (anonymis\xE9es)\r\n\r\n\u2022 Donn\xE9es
+      de g\xE9olocalisation lors de vos visites \xE0 la galerie (facultatif)\r\n\r\nNous
+      ne collectons PAS\_:\r\n\r\n\u2022 Informations d\u2019identification personnelle
+      sans consentement\r\n\r\n\u2022 Informations de paiement (l\u2019application
+      est gratuite)\r\n\r\n\u2022 Conversations ou communications priv\xE9es\r\n\r\nToute
+      la collecte de donn\xE9es est r\xE9gie par la l\xE9gislation rwandaise sur
+      la protection des donn\xE9es et les normes internationales de confidentialit\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102075001544704
+    m_Localized: "5. Droits de propri\xE9t\xE9 intellectuelle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102107167662080
+    m_Localized: "L'ensemble du contenu de l'application ImmersiveArts, y compris,
+      mais sans s'y limiter\_:\r\n\r\n\u2022 Images et descriptions des \u0153uvres
+      d'art\r\n\r\n\u2022 Guides audio et narrations\r\n\r\n\u2022 Effets visuels
+      et animations en r\xE9alit\xE9 augment\xE9e\r\n\r\n\u2022 Conception et code
+      de l'application\r\n\r\nest prot\xE9g\xE9 par le droit d'auteur et les lois
+      sur la propri\xE9t\xE9 intellectuelle. Les \u0153uvres d'art pr\xE9sent\xE9es
+      dans l'application restent la propri\xE9t\xE9 de leurs artistes respectifs
+      ou de la collection du NP Art Center.\r\n\r\nLes utilisateurs ne sont pas autoris\xE9s
+      \xE0\_:\r\n\r\n\u2022 Reproduire, distribuer ou modifier le contenu prot\xE9g\xE9
+      par le droit d'auteur\r\n\r\n\u2022 Utiliser le contenu \xE0 des fins commerciales
+      sans autorisation\r\n\r\n\u2022 Proc\xE9der \xE0 l'ing\xE9nierie inverse ou
+      copier les fonctionnalit\xE9s de l'application"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103261381402624
+    m_Localized: "6. Consignes d'utilisation de la cam\xE9ra et de la r\xE9alit\xE9
+      augment\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103317639602176
+    m_Localized: "Lors de l'utilisation des fonctionnalit\xE9s de la cam\xE9ra en
+      r\xE9alit\xE9 augment\xE9e\_:\n\n\u2022 Pointez la cam\xE9ra uniquement vers
+      les \u0153uvres d'art d\xE9sign\xE9es dans la galerie.\n\n\u2022 Faites preuve
+      de respect envers les autres visiteurs et le personnel.\n\n\u2022 Respectez
+      le r\xE8glement int\xE9rieur de la galerie.\n\n\u2022 Ne photographiez ni n'enregistrez
+      les personnes sans leur consentement.\n\n\u2022 Signalez tout probl\xE8me technique
+      au personnel de la galerie.\n\nL'exp\xE9rience de r\xE9alit\xE9 augment\xE9e
+      est con\xE7ue pour enrichir votre appr\xE9ciation des \u0153uvres, et non pour
+      remplacer la visite physique."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103356629852160
+    m_Localized: "7. Limitation de responsabilit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103382890389504
+    m_Localized: "Nous fournissons l'application ImmersiveArts \xAB\_en l'\xE9tat\_\xBB,
+      sans aucune garantie. Nous d\xE9clinons toute responsabilit\xE9 en cas de\_:\r\n\r\n\u2022
+      Probl\xE8mes techniques ou de compatibilit\xE9 avec votre appareil\r\n\r\n\u2022
+      Interruptions du fonctionnement de la r\xE9alit\xE9 augment\xE9e\r\n\r\n\u2022
+      Perte ou corruption de donn\xE9es\r\n\r\n\u2022 Dommages r\xE9sultant de l'utilisation
+      de l'application\r\n\r\nNotre responsabilit\xE9 est limit\xE9e dans les limites
+      maximales autoris\xE9es par la loi rwandaise."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103452297732096
+    m_Localized: "8. Mises \xE0 jour et modifications"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103477530664960
+    m_Localized: "Nous nous r\xE9servons le droit de\_:\r\n\r\n\u2022 Mettre \xE0
+      jour l\u2019application avec de nouvelles fonctionnalit\xE9s et des am\xE9liorations\r\n\u2022
+      Modifier les pr\xE9sentes conditions g\xE9n\xE9rales, apr\xE8s en avoir inform\xE9
+      les utilisateurs\r\n\r\n\u2022 Ajouter ou supprimer du contenu de la galerie
+      num\xE9rique\r\n\r\n\u2022 Supprimer les fonctionnalit\xE9s devenues obsol\xE8tes\r\n\r\nLes
+      utilisateurs seront inform\xE9s des modifications importantes via l\u2019application
+      ou par courriel, le cas \xE9ch\xE9ant."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103542244581376
+    m_Localized: 9. Droit applicable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103577199910912
+    m_Localized: "Les pr\xE9sentes conditions g\xE9n\xE9rales sont r\xE9gies par
+      le droit rwandais. Tout litige relatif \xE0 l'utilisation de cette application
+      sera soumis \xE0 la comp\xE9tence des tribunaux rwandais.\r\n\r\nPour les utilisateurs
+      internationaux, les lois locales relatives \xE0 la protection des donn\xE9es
+      et aux droits des consommateurs peuvent \xE9galement s'appliquer."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103619059064832
+    m_Localized: "10. Coordonn\xE9es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103643662852096
+    m_Localized: "Pour toute question concernant ces conditions g\xE9n\xE9rales ou
+      l'application ImmersiveArts, veuillez contacter\_:\r\n\r\nImmersiveArts\r\nKG
+      14 Ave, Kigali, Rwanda\r\n\r\nT\xE9l.\_: +250 791 064 893\r\nCourriel\_: immersivearts@gmail.com\r\n\r\nDerni\xE8re
+      mise \xE0 jour\_: octobre 2025\r\nVersion\_: 1.0"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

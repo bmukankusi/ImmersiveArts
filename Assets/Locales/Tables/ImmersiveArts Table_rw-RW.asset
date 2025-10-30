@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ImmersiveArts Table_rw-RW
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: rw-RW
+  m_SharedData: {fileID: 11400000, guid: e0c400da26cd8fb4aa30940181142aea, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 734816182272
+    m_Localized: Ikaze kuri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 900008845312
+    m_Localized: Ibijyanye na NP Art Center
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1719869448192
+    m_Localized: Tangira AR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2443118452736
+    m_Localized: Reba byose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2921910837248
+    m_Localized: Shakisha ububiko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3546186850304
+    m_Localized: Igenamiterere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3921551892480
+    m_Localized: Hindura imimerere bwawe hamwe na AR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4403087351808
+    m_Localized: Ururimi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4566686179328
+    m_Localized: Ururimi rw' App
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4805216247808
+    m_Localized: Ibikururwa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5176487649280
+    m_Localized: Emeza gukurura ibidakoresha interineti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5666915033088
+    m_Localized: Kurura ibya AR urebe nta interineti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6184571838464
+    m_Localized: 'Ububiko '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6367338635264
+    m_Localized: Ibyakuruwe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6629105147904
+    m_Localized: Ibyakuruwe bigaragara hano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7094756777984
+    m_Localized: Impushya za App
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151852829450240
+    m_Localized: Kamera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151925583847424
+    m_Localized: Ububiko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152022023479296
+    m_Localized: Birakenewe kubwa AR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152053774360576
+    m_Localized: Bikenewe mu gukurura AR idakoresha interineti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152243268820992
+    m_Localized: Ibyerekeye & Byemewe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152334243274752
+    m_Localized: Ibyerekeye AR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152559812943872
+    m_Localized: Amabwiriza & Ibisabwa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152630277251072
+    m_Localized: Amasezerano ya ImmersiveArts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 152409908518912
+    m_Localized: Ibyerekeye App
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

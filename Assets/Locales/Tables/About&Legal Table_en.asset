@@ -1,0 +1,207 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: About&Legal Table_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 0bfb21e0611b56242a39c4fba76b3758, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 479433400320
+    m_Localized: Bringing Rwandan art to life through technology
+    m_Metadata:
+      m_Items: []
+  - m_Id: 650300956672
+    m_Localized: Our Vision
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1552382500864
+    m_Localized: ImmersiveArts bridges the gap between traditional Rwandan Art and
+      modern technology, creating an interactive experience that preserves our cultural
+      heritage while making it accessible to new generations through augmented reality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1935293095936
+    m_Localized: Np Art Gallery in Rwanda is a vibrant space dedicated to showcasing
+      contemporary African art. It features a diverse range of artworks, including
+      paintings, sculptures, and installations from both local and international
+      artists. The gallery serves as a cultural hub, promoting artistic expression
+      and dialogue within the community.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2350411751424
+    m_Localized: '@2025 ImmersiveArts. All rights reserved.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99597929488384
+    m_Localized: Important Notice!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 99977857933312
+    m_Localized: Please read these terms carefully. By using ImmersiveArts, you agree
+      to these conditions which govern your use of the application and protect both
+      users and NP Art Center.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100291575095296
+    m_Localized: 1. Introduction and Acceptance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100499411247104
+    m_Localized: Welcome to ImmersiveArts, an augmented reality application developed
+      by Betty Mukankusi. By downloading, installing, or using this application,
+      you agree to be bound by these Terms and Conditions. If you do not agree with
+      any part of these terms, please do not use the application.  These terms constitute
+      a legal agreement between you ("User") and App developers ("we," "us," or "our").
+      Please read these terms carefully before using the application.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100864076619776
+    m_Localized: 2. Application Dscription and Purpose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 100899346522112
+    m_Localized: "ImmersiveArts is designed to enhance your experience with Rwandan
+      art through augmented reality technology. The application allows you to: \n\n
+      \u2022 View interactive AR overlays on physical artworks \n\u2022 Access detailed
+      information about artists and their work \n\u2022 Listen to audio guides and
+      artist narrations \n\u2022 Download content for offline viewing \n\u2022 Explore
+      digital gallery collection  \n\nThe application is intended for educational,
+      cultural, and artistic appreciation purposes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101836345647104
+    m_Localized: 3. User Rights and Responsibilities
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101911037812736
+    m_Localized: "As a user of ImmersiveArts, you have the right to:\r\n\r\n\u2022
+      Access all features of the application as described\r\n\u2022 Receive technical
+      support and updates\r\n\u2022 Privacy protection as outlined in our Privacy
+      Policy\r\n\r\nYou are responsible for:\r\n\r\n\u2022 Using the application
+      in accordance with these terms\r\n\u2022 Ensuring your device meets minimum
+      system requirements\r\n\u2022 Maintaining the confidentiality of any account
+      information\r\n\u2022 Respecting intellectual property rights of artworks and
+      content"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 101995787919360
+    m_Localized: 4. Privacy and Data Collection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102032056066048
+    m_Localized: "We are committed to protecting your privacy. This application may
+      collect:\n\n\u2022 Camera access for AR functionality (required)\n\u2022 Device
+      storage access for downloading content (optional)\n\u2022 Usage analytics to
+      improve app performance (anonymized)\n\u2022 Location data when visiting the
+      physical gallery (optional)\n\nWe do NOT collect:\n\n\u2022 Personal identification
+      information without consent\n\u2022 Payment information (app is free to use)\n\u2022
+      Private conversations or communications\n\nAll data collection is governed
+      by Rwanda's data protection laws and international privacy standards."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102075001544704
+    m_Localized: 5. Intellectual Property Rights
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102107167662080
+    m_Localized: "All content within the ImmersiveArts application, including but
+      not limited to:\n\u2022 Artwork images and descriptions\n\u2022 Audio guides
+      and narrations\n\u2022 AR visual effects and animations\n\u2022 Application
+      design and code\n\nAre protected by copyright and intellectual property laws.
+      The artworks featured in the application remain the property of their respective
+      artists or the NP Art Center collection.\n\nUsers may not:\n\u2022 Reproduce,
+      distribute, or modify copyrighted content\n\u2022 Use content for commercial
+      purposes without permission\n\u2022 Reverse engineer or copy application features"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103261381402624
+    m_Localized: 6. Camera and AR Usage Guidelines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103317639602176
+    m_Localized: "When using the AR camera features:\n\n\u2022 Only point the camera
+      at designated artworks in the gallery\n\u2022 Be respectful of other visitors
+      and staff\n\u2022 Follow all gallery rules and regulations\n\u2022 Do not photograph
+      or record people without consent\n\u2022 Report any technical issues to gallery
+      staff\n\nThe AR experience is designed to enhance your appreciation of the
+      artworks, not replace the physical viewing experience."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103356629852160
+    m_Localized: 7. Limitation of Liability
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103382890389504
+    m_Localized: "We provide the ImmersiveArts application \"as is\" without warranty
+      of any kind. We shall not be liable for:\n\n\u2022 Technical issues or device
+      compatibility problems\n\u2022 Interruptions in AR functionality\n\u2022 Data
+      loss or corruption\n\u2022 Any damages arising from app usage\n\nOur liability
+      is limited to the maximum extent permitted by Rwandan law."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103452297732096
+    m_Localized: 8. Updates and Modifications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103477530664960
+    m_Localized: "We reserve the right to:\n\u2022 Update the application with new
+      features and improvements\n\u2022 Modify these terms and conditions with notice
+      to users\n\u2022 Add or remove content from the digital gallery\n\u2022 Discontinue
+      features that are no longer viable\n\nUsers will be notified of significant
+      changes through the application or email if provided."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103542244581376
+    m_Localized: 9. Governing Law
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103577199910912
+    m_Localized: 'These terms and conditions are governed by the laws of the Republic
+      of Rwanda. Any disputes arising from the use of this application will be subject
+      to the jurisdiction of Rwandan courts.
+
+
+      For international users, local
+      laws may also apply regarding data protection and consumer rights'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103619059064832
+    m_Localized: 10. Contact Information
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103643662852096
+    m_Localized: 'For questions about these terms and conditions or the ImmersiveArts
+      application, please contact:
+
+
+      ImmersiveArts
+
+      KG 14 Ave, Kigali,
+      Rwanda
+
+      Phone: +250 791 064 893
+
+      Email: immersivearts@gmail.com
+
+
+      Last
+      updated: October 2025
+
+      Version: 1.0'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
