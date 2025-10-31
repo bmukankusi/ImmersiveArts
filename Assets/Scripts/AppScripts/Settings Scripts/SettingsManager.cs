@@ -1,6 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// Manages the visibility of various panels in the application, including the About, Terms and Conditions, Settings,
+/// and Bottom Menu panels.
+/// </summary>
+/// <remarks>This class provides methods to control the active state of specific panels, ensuring that only the
+/// relevant panel is displayed at a time. It is designed to be used in a UI context where panels are toggled based on
+/// user interaction.</remarks>
+
 public class SettingsManager : MonoBehaviour
 {
     public GameObject aboutPanel;

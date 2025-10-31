@@ -2,17 +2,24 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Manages button interactions and scene transitions in the application, including displaying informational panels and
+/// handling navigation between scenes.
+/// </summary>
+/// <remarks>This class is designed to be used in Unity projects and provides functionality for managing scene
+/// transitions, showing and hiding informational panels, and refreshing the AR scene. It assumes that the scene names
+/// for the home and AR scenes are configured, and that an informational panel GameObject is assigned.</remarks>
+
 public class ButtonsManager : MonoBehaviour
 {
   
     public string homeSceneName = "App Scene";
     public string arSceneName = "AR Scene";
     public GameObject infoPanel;
-    public float infoDisplayDuration = 3f; // Duration to show info panel on AR scene load
+    public float infoDisplayDuration = 3f;
 
     void Start()
     {
-        // If this is the configured AR scene, show the info panel for the configured duration.
         var activeSceneName = SceneManager.GetActiveScene().name;
         if (activeSceneName == arSceneName)
         {
@@ -40,7 +47,7 @@ public class ButtonsManager : MonoBehaviour
         CloseInfoPanel();
     }
 
-    // Called by the "back" button to go back to App Scene
+    // Called by the back button to go back to App Scene
     public void GoToHomeScene()
     {
         if (string.IsNullOrEmpty(homeSceneName))

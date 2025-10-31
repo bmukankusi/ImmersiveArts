@@ -5,13 +5,20 @@ using TMPro;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
+
+/// <summary>
+/// Manages the selection of application language through a dropdown menu and updates the localization settings
+/// accordingly.
+/// </summary>
+/// <remarks>This class interacts with the Unity Localization package to allow users to select a language from a
+/// predefined list. The selected language is saved in player preferences and applied on subsequent application
+/// launches</remarks>
 public class LanguageSelect : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown dropdown;
 
     const string PrefKey = "app_locale";
 
-    // Display name and locale code (ISO 639-1). Order defines dropdown order.
     private readonly (string display, string code)[] languages = new[]
     {
         ("English", "en"),
@@ -19,7 +26,7 @@ public class LanguageSelect : MonoBehaviour
         ("Kinyarwanda", "rw-RW")
     };
 
-    // Wait for Localization system to initialize before working with locales.
+    // Wait for Localization system to initialize before working with locales
     private IEnumerator Start()
     {
         if (dropdown == null)

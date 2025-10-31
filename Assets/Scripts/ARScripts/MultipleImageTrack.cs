@@ -4,19 +4,27 @@ using UnityEngine.Video;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+
+/// <summary>
+/// Manages the tracking of multiple AR reference images and dynamically instantiates associated prefabs.
+/// </summary>
+/// <remarks>This component listens for changes in the tracking state of AR reference images using the <see
+/// cref="ARTrackedImageManager"/>. When a reference image is detected, it instantiates a corresponding prefab, applies
+/// position, rotation, and scale offsets, and manages the prefab's visibility and behavior based on the tracking state.
+/// Prefabs are expected to include a <see cref="VideoPlayer"/> component for playback control, though this is optional.
+/// To use this component, attach it to a GameObject with an <see cref="ARTrackedImageManager"/> component. Configure
+/// the <see cref="imagePrefabs"/> list in the Inspector to map reference image names to prefabs.</remarks>
+
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class MultipleImageTrack : MonoBehaviour
 {
     [System.Serializable]
     public struct NamedPrefab
     {
-        public string imageName;              // exact name from your Reference Image Library
-        public GameObject prefab;             // prefab with VideoPlayer (use a Quad)
-        [Tooltip("Local position offset (in tracked-image local space).")]
-        public Vector3 positionOffset;        // inspector-controlled local offset
-        [Tooltip("Local Euler rotation offset (degrees, tracked-image local space).")]
-        public Vector3 rotationOffset;        // inspector-controlled local rotation
-        [Tooltip("Scale multiplier applied to the tracked image physical size (Quad is 1x1).")]
+        public string imageName;              
+        public GameObject prefab;             
+        public Vector3 positionOffset;        
+        public Vector3 rotationOffset;       
         public float scaleMultiplier;         // adjust to fine-tune quad size
     }
 
@@ -25,6 +33,13 @@ public class MultipleImageTrack : MonoBehaviour
 
     ARTrackedImageManager _trackedImageManager;
     Dictionary<string, GameObject> _instantiated = new Dictionary<string, GameObject>();
+
+    // Track last known tracking state so as to detect transitions 
+    // and record an AR scan each time the user points the camera at the artwork.
+    Dictionary<string, bool> _wasTracking = new Dictionary<string, bool>();
+
+    // Gallery id used when recording scans
+    const string GalleryId = "NP Art gallery";
 
     void Awake()
     {
@@ -49,7 +64,6 @@ public class MultipleImageTrack : MonoBehaviour
 
     void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        // defensive: iterate safely
         foreach (var added in eventArgs.added)
             UpdateImageSafe(added);
 
@@ -78,7 +92,7 @@ public class MultipleImageTrack : MonoBehaviour
 
     void UpdateImage(ARTrackedImage trackedImage)
     {
-        // defensive null checks
+        // Sanity check
         if (trackedImage.referenceImage == null)
         {
             Debug.LogWarning("TrackedImage has no referenceImage.", this);
@@ -91,7 +105,7 @@ public class MultipleImageTrack : MonoBehaviour
         var mapping = imagePrefabs.Find(x => x.imageName == name);
         if (mapping.prefab == null)
         {
-            // No prefab mapped for this image — this is expected if you haven't set it in inspector
+            // No prefab mapped for this image 
             return;
         }
 
@@ -126,7 +140,35 @@ public class MultipleImageTrack : MonoBehaviour
             return;
         }
 
-        if (trackedImage.trackingState == TrackingState.Tracking)
+        bool isTracking = trackedImage.trackingState == TrackingState.Tracking;
+        bool wasTracking = false;
+        _wasTracking.TryGetValue(name, out wasTracking);
+
+        //  not-tracking - tracking (counts as one AR scan)
+        if (isTracking && !wasTracking)
+        {
+            try
+            {
+                if (SaveDataToFirestore.Instance != null)
+                {
+                    // use the reference image name as artworkId
+                    SaveDataToFirestore.Instance.RecordARScan(GalleryId, name);
+                }
+                else
+                {
+                    Debug.LogWarning("[MultipleImageTrack] SaveDataToFirestore.Instance not found. AR scan not recorded.");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Error recording AR scan for '{name}': {ex}");
+            }
+        }
+
+        // Update stored tracking state
+        _wasTracking[name] = isTracking;
+
+        if (isTracking)
         {
             instance.SetActive(true);
             // Parent to tracked image so it follows pose; keep local transform values
@@ -184,9 +226,13 @@ public class MultipleImageTrack : MonoBehaviour
 
             _instantiated.Remove(name);
         }
+
+        // Clear tracking state so a future redetection will be counted again
+        if (_wasTracking.ContainsKey(name))
+            _wasTracking.Remove(name);
     }
 
-    // Helper: apply inspector-controlled local transform and scale based on tracked image physical size.
+    // Helper: apply inspector controlled local transform and scale based on tracked image physical size
     void ApplyOffsetsAndScale(Transform t, Vector2 imageSize, NamedPrefab mapping)
     {
         if (t == null)

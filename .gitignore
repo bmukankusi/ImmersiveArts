@@ -42,6 +42,7 @@ FirebaseApp.androidlib/
 FirebaseApp.framework/
 FirebaseAuth.framework/
 FirebaseDatabase.framework/
+FirebaseFirestore.framework/
 *.firebase
 
 #  this will ignore the asset store tools plugin
