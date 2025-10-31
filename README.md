@@ -3,7 +3,7 @@
  ImmersiveArts is an augmented reality (AR) mobile application designed to enhance tourism in Rwanda and East African galleries and museums, and improve user engagement. The app uses AR technology to provide immersive and interactive experiences by overlaying digital content such as 3D models, audios, 2D content, and videos on physical artworks. Admin users (gallery or museum managers) can manage AR content dynamically via a data storing page.
 
  ## Link to Github repo: 
-https://github.com/bmukankusi/ImmersiveArts_NP-Art-Center.git 
+https://github.com/bmukankusi/ImmersiveArts
  
  ## How to set up the environment and the project
  ### Prerequisites
@@ -24,11 +24,9 @@ https://github.com/bmukankusi/ImmersiveArts_NP-Art-Center.git
    c. Admins may log in to manage artworks and view analytics
 
    ### Designs(Figma design)
-   <img width="249" height="538" alt="Image" src="https://github.com/user-attachments/assets/29a02ae9-322c-4726-832a-c8212652ee75" />
+  <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/8c5cf952-3391-4e4f-88d1-a506b3bbf51f" />                          <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/9b9bb51b-11ac-47e7-8771-6c797ea748a8" />
 
-   <img width="279" height="553" alt="Image" src="https://github.com/user-attachments/assets/794db01d-5ba7-4e53-8448-9f2da7f908bc" />                      <img width="307" height="555" alt="Image" src="https://github.com/user-attachments/assets/621a9838-0df0-428d-b17d-03e79250d41b" />
-
-   <img width="274" height="561" alt="Image" src="https://github.com/user-attachments/assets/0573c5d4-afc7-4d22-8ba8-5c21db5e2f6e" />                         <img width="318" height="572" alt="Image" src="https://github.com/user-attachments/assets/cc61151c-be2f-482e-ac81-18ec5ed673eb" />
+  <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/dafa8f60-c2f2-4532-8f23-f728cf48612a" />                              <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/93bdb7c9-1a4c-4de2-9c19-6651d99161a0" />
   
    ### Video Recording
    - Link to video: https://www.canva.com/design/DAG1AeLwXOA/lCj7jjKDKUmFmjugjrfpRg/view?utm_content=DAG1AeLwXOA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h912ba33119 
