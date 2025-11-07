@@ -12,8 +12,7 @@ public class Login : MonoBehaviour
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
     public Button signInButton;
-    public Button viewButton;
-    public TMP_Text viewButtonText;
+    // View button moved to PasswordViewToggle component
     public TMP_Text feedbackText;
 
     [Header("Panels")]
@@ -22,6 +21,7 @@ public class Login : MonoBehaviour
     public GameObject topMenuPanel;
     public GameObject loginPanel;
     public GameObject bottmNavPanel;
+    public GameObject homePanel;
 
     [Header("Behavior")]
     public float feedbackDisplaySeconds = 2f;
@@ -35,22 +35,18 @@ public class Login : MonoBehaviour
     /// Initializes the authentication instance and sets up event listeners for UI interactions.
     /// </summary>
     /// <remarks>This method configures the Firebase authentication instance and attaches event handlers  to
-    /// the sign-in and password visibility buttons. It also ensures  that the feedback text UI
-    /// element is hidden initially</remarks>
-
+    /// the sign-in button. It also ensures  that the feedback text UI element is hidden initially.</remarks>
     void Start()
     {
         auth = FirebaseAuth.DefaultInstance;
 
         if (signInButton != null) signInButton.onClick.AddListener(OnSignInClicked);
-        if (viewButton != null) viewButton.onClick.AddListener(TogglePasswordVisibility);
         if (feedbackText != null) feedbackText.gameObject.SetActive(false);
     }
 
     void OnDestroy()
     {
         if (signInButton != null) signInButton.onClick.RemoveListener(OnSignInClicked);
-        if (viewButton != null) viewButton.onClick.RemoveListener(TogglePasswordVisibility);
     }
 
     public async void OnSignInClicked()
@@ -88,7 +84,6 @@ public class Login : MonoBehaviour
             }
 
             // Activate panels
-            
             StartCoroutine(ActivatePanelsSequence());
         }
         catch (Exception ex)
@@ -139,28 +134,9 @@ public class Login : MonoBehaviour
         // Hide bottom navigation panel 
         if (bottmNavPanel != null)
             bottmNavPanel.SetActive(false);
-    }
-
-    // Toggle between showing and hiding password text
-    void TogglePasswordVisibility()
-    {
-        if (passwordInput == null) return;
-
-        var current = passwordInput.contentType;
-        if (current == TMP_InputField.ContentType.Password || current == TMP_InputField.ContentType.Pin)
-        {
-            passwordInput.contentType = TMP_InputField.ContentType.Standard;
-            if (viewButtonText != null) viewButtonText.text = "Hide";
-        }
-        else
-        {
-            passwordInput.contentType = TMP_InputField.ContentType.Password;
-            if (viewButtonText != null) viewButtonText.text = "View";
-        }
-
-        // Refresh the visual state
-        passwordInput.ForceLabelUpdate();
-        passwordInput.ActivateInputField();
+        //hide home panel as well
+                if (homePanel != null)
+            homePanel.SetActive(false);
     }
 
     private System.Collections.IEnumerator ShowTemporaryFeedback(string message, bool isError, float duration)

@@ -33,13 +33,6 @@ public class AppNavigation : MonoBehaviour
     }
 
 
-    public void OpenARScene()
-    {
-        // Open a new scene for AR experience
-        SceneManager.LoadScene("AR Scene");
-
-    }
-
     private void SetActivePanel(GameObject activePanel)
     {
         foreach (var panel in panels)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Firebase;
 using Firebase.Firestore;
 using Firebase.Extensions;
+using Firebase.Auth;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,9 +13,9 @@ using UnityEngine.UI;
 public class LoadData : MonoBehaviour
 {
     [Header("UI / Prefab")]
-    public RectTransform contentParent;             
-    public GameObject artworkPrefab;                
-    public Sprite placeholderSprite;                
+    public RectTransform contentParent;
+    public GameObject artworkPrefab;
+    public Sprite placeholderSprite;
 
     [Header("Prefab child tags")]
     public string imageChildTag = "ArtworkImage";
@@ -23,12 +24,12 @@ public class LoadData : MonoBehaviour
     public string isActiveTag = "ArtworkIsActive";
 
     // Delete button and confirmation panel
-    public string deleteButtonTag = "ArtworkDeleteButton";   
-    public GameObject deleteConfirmPanel;                    
-    public Button deleteConfirmYesButton;                    
-    public Button deleteConfirmNoButton;                     
+    public string deleteButtonTag = "ArtworkDeleteButton";
+    public GameObject deleteConfirmPanel;
+    public Button deleteConfirmYesButton;
+    public Button deleteConfirmNoButton;
 
-    public GameObject deleteHandlerTarget;    // target for delete message; if null, uses deleteConfirmPanel or this GameObject
+    public GameObject deleteHandlerTarget; // target for delete message; if null, uses deleteConfirmPanel or this GameObject
 
     FirebaseFirestore db;
 
@@ -44,11 +45,9 @@ public class LoadData : MonoBehaviour
         // Start loading artworks when the panel becomes active
         InitializeFirebaseAndLoad();
 
-        // Hide confirm panel 
+        // Hide confirm panel
         if (deleteConfirmPanel != null) deleteConfirmPanel.SetActive(false);
     }
-
-    
 
     void InitializeFirebaseAndLoad()
     {
@@ -61,8 +60,31 @@ public class LoadData : MonoBehaviour
                 return;
             }
 
-            db = FirebaseFirestore.DefaultInstance;
-            LoadArtworks();
+            var auth = FirebaseAuth.DefaultInstance;
+            // If not signed in, sign in anonymously so Firestore rules that require auth succeed.
+            if (auth.CurrentUser == null)
+            {
+                auth.SignInAnonymouslyAsync().ContinueWithOnMainThread(signInTask =>
+                {
+                    if (signInTask.IsFaulted)
+                    {
+                        Debug.LogError("Anonymous sign-in failed: " + signInTask.Exception?.Flatten()?.Message);
+                        // Still attempt to initialize Firestore (will fail if rules require auth).
+                    }
+                    else
+                    {
+                        Debug.Log("Signed in anonymously: " + auth.CurrentUser.UserId);
+                    }
+
+                    db = FirebaseFirestore.DefaultInstance;
+                    LoadArtworks();
+                });
+            }
+            else
+            {
+                db = FirebaseFirestore.DefaultInstance;
+                LoadArtworks();
+            }
         });
     }
 
@@ -92,17 +114,27 @@ public class LoadData : MonoBehaviour
             return;
         }
 
+        var auth = FirebaseAuth.DefaultInstance;
+        if (auth.CurrentUser == null)
+            Debug.LogWarning("Not signed in (auth.CurrentUser is null). Reads may be denied by rules.");
+
         db.Collection("Artworks").GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
-                Debug.LogError("Failed to get Artworks: " + task.Exception);
+                Debug.LogError("Failed to get Artworks: " + task.Exception?.Flatten()?.ToString());
                 return;
             }
 
             ClearContent();
 
             QuerySnapshot snapshot = task.Result;
+            if (snapshot == null || snapshot.Count == 0)
+            {
+                Debug.Log("No artwork documents found in 'Artworks' collection.");
+                return;
+            }
+
             foreach (DocumentSnapshot doc in snapshot.Documents)
             {
                 try
@@ -121,7 +153,7 @@ public class LoadData : MonoBehaviour
                     GameObject go = Instantiate(artworkPrefab, contentParent);
                     go.name = $"Artwork_{doc.Id}";
 
-                    // Find by tag 
+                    // Find by tag
                     Transform tName = FindChildWithTag(go.transform, artworkNameTag);
                     if (tName != null)
                     {
@@ -156,9 +188,23 @@ public class LoadData : MonoBehaviour
                         }
                     }
 
+                    // NEW: debug/log image info so you can see why images don't load
+                    Debug.Log($"Artwork {doc.Id} -> name='{name}' imageUrl='{imageUrl ?? "null"}' uiImageAssigned={(uiImage != null)}");
+
                     if (!string.IsNullOrEmpty(imageUrl) && uiImage != null)
                     {
-                        StartCoroutine(DownloadImageRoutine(imageUrl, uiImage));
+                        if (imageUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+                        {
+                            StartCoroutine(DownloadImageRoutine(imageUrl, uiImage));
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Artwork {doc.Id} has invalid image URL: {imageUrl}");
+                        }
+                    }
+                    else if (!string.IsNullOrEmpty(imageUrl) && uiImage == null)
+                    {
+                        Debug.LogWarning($"Artwork {doc.Id} has image URL but prefab has no Image child with tag '{imageChildTag}'.");
                     }
 
                     // Delete button handling
@@ -252,8 +298,6 @@ public class LoadData : MonoBehaviour
         // remove listeners
         if (deleteConfirmYesButton != null) deleteConfirmYesButton.onClick.RemoveAllListeners();
         if (deleteConfirmNoButton != null) deleteConfirmNoButton.onClick.RemoveAllListeners();
-
-        // LoadArtworks(); 
     }
 
     // Helper: searches the instantiated prefab and returns the first child whose tag equals requested tag
@@ -272,21 +316,35 @@ public class LoadData : MonoBehaviour
     // Image-only download routine (returns a Sprite assigned to Image)
     IEnumerator DownloadImageRoutine(string url, Image uiImage)
     {
-        if (string.IsNullOrEmpty(url) || uiImage == null) yield break;
+        if (string.IsNullOrEmpty(url) || uiImage == null)
+        {
+            Debug.LogWarning("DownloadImageRoutine: empty url or missing Image component.");
+            yield break;
+        }
+
+        Debug.Log($"DownloadImageRoutine: starting download for url={url}");
 
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url))
         {
+#if UNITY_2020_1_OR_NEWER
+            uwr.timeout = 15;
+#endif
             yield return uwr.SendWebRequest();
 
 #if UNITY_2020_1_OR_NEWER
-            if (uwr.result != UnityWebRequest.Result.Success)
+            bool failed = uwr.result != UnityWebRequest.Result.Success;
 #else
-            if (uwr.isNetworkError || uwr.isHttpError)
+            bool failed = uwr.isNetworkError || uwr.isHttpError;
 #endif
+            long code = uwr.responseCode;
+            if (failed)
             {
-                Debug.LogWarning($"Image download failed: {uwr.error} - {url}");
+                Debug.LogWarning($"Image download failed: {uwr.error} - HTTP {code} - {url}");
                 yield break;
             }
+
+            string contentType = uwr.GetResponseHeader("Content-Type") ?? "";
+            Debug.Log($"DownloadImageRoutine: HTTP {code} Content-Type={contentType} for {url}");
 
             Texture2D tex = DownloadHandlerTexture.GetContent(uwr);
             if (tex == null)
@@ -295,13 +353,14 @@ public class LoadData : MonoBehaviour
                 yield break;
             }
 
-            // Create a Sprite and assign to the Image component
             Sprite spr = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             uiImage.sprite = spr;
             uiImage.preserveAspect = true;
-
-            // Track runtime sprite for cleanup
+            uiImage.enabled = true;              // ensure Image is visible
+            uiImage.type = Image.Type.Simple;    // ensure correct image type
             _runtimeSprites.Add(spr);
+
+            Debug.Log($"Image downloaded and assigned: {url} (HTTP {code}) size={tex.width}x{tex.height}");
         }
     }
 }

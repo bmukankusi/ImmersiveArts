@@ -15,6 +15,8 @@ public class MultipleImageTrack : MonoBehaviour
         public Vector3 positionOffset;
         public Vector3 rotationOffset;
         public float scaleMultiplier;
+        public float minViewTime;    // Minimum seconds to count as a "view"
+        public bool logScan;         // Whether to log a "scan" the first time the image is detected
     }
 
     public List<NamedPrefab> imagePrefabs = new List<NamedPrefab>();
@@ -27,6 +29,16 @@ public class MultipleImageTrack : MonoBehaviour
     HashSet<string> _createdByUs = new HashSet<string>();
 
     const string GalleryId = "NP Art gallery";
+
+    // Per-image runtime tracking state (view sessions & counts)
+    class TrackingState
+    {
+        public bool isTracking;
+        public float startTime;
+        public int viewCount;
+        public bool hasLoggedScan;
+    }
+    Dictionary<string, TrackingState> _tracking = new Dictionary<string, TrackingState>();
 
     void Awake()
     {
@@ -89,6 +101,8 @@ public class MultipleImageTrack : MonoBehaviour
         if (mapping.prefab == null)
             return;
 
+        bool hadWasTrackingEntry = _wasTracking.ContainsKey(name);
+
         // Instantiate or reuse existing instance
         if (!_instantiated.ContainsKey(name))
         {
@@ -134,22 +148,21 @@ public class MultipleImageTrack : MonoBehaviour
             return;
         }
 
-        bool isTracking = trackedImage.trackingState == TrackingState.Tracking;
+        bool isTracking = trackedImage.trackingState == UnityEngine.XR.ARSubsystems.TrackingState.Tracking;
         bool wasTracking = false;
         _wasTracking.TryGetValue(name, out wasTracking);
 
-        if (isTracking && !wasTracking)
+        // Ensure there is a tracking state object
+        var state = GetOrCreateState(name);
+
+        // If this is the first time we see this image (no previous _wasTracking entry), optionally log a "scan"
+        if (!hadWasTrackingEntry && mapping.logScan && !state.hasLoggedScan)
         {
-            try
+            state.hasLoggedScan = true;
+            if (AnalyticsManager.Instance != null)
             {
-                if (SaveDataToFirestore.Instance != null)
-                    SaveDataToFirestore.Instance.RecordARScan(GalleryId, name);
-                else
-                    Debug.LogWarning("[MultipleImageTrack] SaveDataToFirestore.Instance not found. AR scan not recorded.");
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogError($"Error recording AR scan for '{name}': {ex}");
+                // use the reference image name as the stable artwork id (set this to match Firestore doc id / slug)
+                AnalyticsManager.Instance.LogInteraction(name, name, 0f, "scan");
             }
         }
 
@@ -164,12 +177,20 @@ public class MultipleImageTrack : MonoBehaviour
             var vp = instance.GetComponentInChildren<VideoPlayer>();
             if (vp != null && !vp.isPlaying)
                 vp.Play();
+
+            // Start a view session if we weren't tracking previously
+            if (!wasTracking)
+                StartViewSession(name, mapping);
         }
         else
         {
             var vp = instance.GetComponentInChildren<VideoPlayer>();
             if (vp != null && vp.isPlaying)
                 vp.Pause();
+
+            // End view session when tracking is lost
+            if (wasTracking)
+                EndViewSession(name, mapping);
 
             instance.SetActive(false);
         }
@@ -196,6 +217,14 @@ public class MultipleImageTrack : MonoBehaviour
             return;
 
         var name = trackedImage.referenceImage.name;
+
+        // If it was tracking, end the session
+        bool wasTracking = false;
+        _wasTracking.TryGetValue(name, out wasTracking);
+        var mapping = imagePrefabs.Find(x => x.imageName == name);
+        if (wasTracking)
+            EndViewSession(name, mapping);
+
         if (_instantiated.TryGetValue(name, out var instance))
         {
             if (instance != null)
@@ -220,6 +249,9 @@ public class MultipleImageTrack : MonoBehaviour
 
         if (_createdByUs.Contains(name))
             _createdByUs.Remove(name);
+
+        if (_tracking.ContainsKey(name))
+            _tracking.Remove(name);
     }
 
     void ApplyOffsetsAndScale(Transform t, Vector2 imageSize, NamedPrefab mapping)
@@ -235,5 +267,69 @@ public class MultipleImageTrack : MonoBehaviour
         t.localPosition = mapping.positionOffset;
         t.localEulerAngles = mapping.rotationOffset;
         t.localScale = scale;
+    }
+
+    TrackingState GetOrCreateState(string name)
+    {
+        if (!_tracking.TryGetValue(name, out var state))
+        {
+            state = new TrackingState { isTracking = false, startTime = 0f, viewCount = 0, hasLoggedScan = false };
+            _tracking[name] = state;
+        }
+        return state;
+    }
+
+    void StartViewSession(string name, NamedPrefab mapping)
+    {
+        var state = GetOrCreateState(name);
+        if (state.isTracking) return;
+
+        state.isTracking = true;
+        state.startTime = Time.time;
+
+        // Ensure instance visible
+        if (_instantiated.TryGetValue(name, out var instance) && instance != null)
+            instance.SetActive(true);
+
+        // Start video if present
+        if (_instantiated.TryGetValue(name, out var inst) && inst != null)
+        {
+            var vp = inst.GetComponentInChildren<VideoPlayer>();
+            if (vp != null && !vp.isPlaying) vp.Play();
+        }
+
+        Debug.Log($"[MultipleImageTrack] Start view session: {name}");
+    }
+
+    void EndViewSession(string name, NamedPrefab mapping)
+    {
+        var state = GetOrCreateState(name);
+        if (!state.isTracking) return;
+
+        state.isTracking = false;
+        float duration = Time.time - state.startTime;
+        float minView = (mapping.prefab != null) ? mapping.minViewTime : 0f;
+        if (minView <= 0f) minView = 3f; // default fallback
+
+        // Stop video if present
+        if (_instantiated.TryGetValue(name, out var instance) && instance != null)
+        {
+            var vp = instance.GetComponentInChildren<VideoPlayer>();
+            if (vp != null && vp.isPlaying) vp.Pause();
+        }
+
+        if (duration >= minView)
+        {
+            state.viewCount++;
+            if (AnalyticsManager.Instance != null)
+            {
+                AnalyticsManager.Instance.LogInteraction(name, name, duration, "view");
+            }
+            Debug.Log($"[MultipleImageTrack] Recorded view for {name}. duration={duration:F1}s totalViews={state.viewCount}");
+        }
+        else
+        {
+            Debug.Log($"[MultipleImageTrack] Ignored short view for {name}. duration={duration:F1}s (min {minView}s)");
+        }
     }
 }

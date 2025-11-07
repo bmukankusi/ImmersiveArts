@@ -25,7 +25,7 @@ MonoBehaviour:
       m_GuidHigh: 2713233835222477417
     m_Size: {x: 0.1, y: 0.1192053}
     m_SpecifySize: 1
-    m_Name: Bluebird
+    m_Name: blueBird
     m_Texture: {fileID: 2800000, guid: 4277cb7222a121b469aa013dcc57a725, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 4616400278490332649
@@ -35,7 +35,7 @@ MonoBehaviour:
       m_GuidHigh: 11470529157019185641
     m_Size: {x: 0.5964706, y: 0.4}
     m_SpecifySize: 1
-    m_Name: Zebras
+    m_Name: zebras
     m_Texture: {fileID: 2800000, guid: 0c68b41b8996db44e9b1e3ad7e812f9f, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 5075838041047917535
@@ -45,7 +45,7 @@ MonoBehaviour:
       m_GuidHigh: 18360858667864659579
     m_Size: {x: 0.3, y: 0.44783863}
     m_SpecifySize: 1
-    m_Name: Bottles
+    m_Name: bottles
     m_Texture: {fileID: 2800000, guid: f8a991195d9a6fe47b9639adaddfcefe, type: 3}
   - m_SerializedGuid:
       m_GuidLow: 4926390658206487131
@@ -55,5 +55,5 @@ MonoBehaviour:
       m_GuidHigh: 16805645471992857451
     m_Size: {x: 0.90555555, y: 1}
     m_SpecifySize: 1
-    m_Name: Women
+    m_Name: womenEmpowered
     m_Texture: {fileID: 2800000, guid: df626afd4b2531146b43494384a539e9, type: 3}
