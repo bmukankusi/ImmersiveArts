@@ -4,6 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System;
+
+
+/// <summary>
+///  This controller manages the admin dashboard UI, fetching and displaying analytics data.
+/// </summary>
+/// <remarks> It interacts with the AnalyticsManager to retrieve data and updates the UI elements accordingly.
+/// It also provides manual and automatic refresh capabilities.</remarks>
 
 public class AdminDashboardController : MonoBehaviour
 {
@@ -29,7 +37,7 @@ public class AdminDashboardController : MonoBehaviour
         // Set up button listener
         refreshButton.onClick.AddListener(OnRefreshClicked);
 
-        // Do not auto-load here; loading happens when panel becomes active (OnEnable)
+        // Do not auto load here/ loading happens when panel becomes active 
     }
 
     void OnEnable()
@@ -40,13 +48,13 @@ public class AdminDashboardController : MonoBehaviour
             _ = LoadDashboardData();
         }
 
-        // Start auto-refresh
+        // Start auto refresh
         InvokeRepeating(nameof(AutoRefresh), 120f, 120f);
     }
 
     void OnDisable()
     {
-        // Stop auto-refresh when dashboard is closed
+        // Stop auto refresh when dashboard is closed
         CancelInvoke(nameof(AutoRefresh));
     }
 
@@ -70,20 +78,39 @@ public class AdminDashboardController : MonoBehaviour
             var found = FindObjectOfType<AnalyticsManager>();
             if (found != null)
             {
-                // assign the instance so other code can use it
                 AnalyticsManager.Instance = found;
                 Debug.Log("AdminDashboardController: Found AnalyticsManager in scene and assigned Instance.");
             }
             else
             {
-                Debug.LogError("AnalyticsManager not found!");
-                UpdateUIWithError();
-
-                // Reset state and return
-                isRefreshing = false;
-                refreshButton.interactable = true;
-                return;
+                // Create a GameObject with AnalyticsManager so analytics init runs
+                var go = new GameObject("AnalyticsManager");
+                var am = go.AddComponent<AnalyticsManager>();
+                // Awake should have set Instance, but ensure fallback
+                if (AnalyticsManager.Instance == null) AnalyticsManager.Instance = am;
+                Debug.Log("AdminDashboardController: Created AnalyticsManager GameObject.");
             }
+        }
+
+        // Wait for AnalyticsManager to initialize Firestore 
+        bool ready = true;
+        try
+        {
+            ready = await AnalyticsManager.Instance.WaitForInitializationAsync(5000);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning("Error while waiting for Analytics initialization: " + ex.Message);
+            ready = false;
+        }
+
+        if (!ready)
+        {
+            Debug.LogError("AnalyticsManager not ready. Cannot load dashboard data.");
+            UpdateUIWithError();
+            isRefreshing = false;
+            refreshButton.interactable = true;
+            return;
         }
 
         try
@@ -117,7 +144,7 @@ public class AdminDashboardController : MonoBehaviour
             bottlesScansText.text = analyticsData.artworkPopularity.ContainsKey("bottles") ?
                 analyticsData.artworkPopularity["bottles"].ToString("N0") : "0";
             bluebirdScansText.text = analyticsData.artworkPopularity.ContainsKey("bluebird") ?
-                analyticsData.artworkPopularity["bluebird"].ToString("N0") : "0";
+                analyticsData.artworkPopularity["blueBird"].ToString("N0") : "0";
             womenScansText.text = analyticsData.artworkPopularity.ContainsKey("women") ?
                 analyticsData.artworkPopularity["women"].ToString("N0") : "0";
             zebrasScansText.text = analyticsData.artworkPopularity.ContainsKey("zebras") ?

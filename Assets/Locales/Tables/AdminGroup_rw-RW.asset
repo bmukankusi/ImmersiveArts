@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: AdminGroup_rw-RW
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: rw-RW
+  m_SharedData: {fileID: 11400000, guid: 1ba3fb3bf1ac6fb49a63f49159e24e79, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 362589195673600
+    m_Localized: Ubuyobozi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363171138576384
+    m_Localized: Incamake
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363305679265792
+    m_Localized: Kurikirana ibipimo byingenzi hamwe nisesengura ryabakoresha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363476710400000
+    m_Localized: Abakoresha buri munsi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363510659096576
+    m_Localized: Umubare rusange wisesengura uyumunsi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363610408034304
+    m_Localized: "Cunga iby\xFAbugeni"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363876339490816
+    m_Localized: Igikorwa c'abakoresha (buri kwezi)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364305194491904
+    m_Localized: Abakoresha bakora na AR scan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364452678803456
+    m_Localized: 'Impuzandengo y''abakoresha buri kwezi:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364540817907712
+    m_Localized: 'Ikigereranyo cya buri kwezi cya AR:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368688732905472
+    m_Localized: Gucunga ibihangano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368803610697728
+    m_Localized: Gucunga ibihangano byawe nibikorwa byongeweho
+    m_Metadata:
+      m_Items: []
+  - m_Id: 370118277537792
+    m_Localized: Gucunga imirimo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 372413014810624
+    m_Localized: Hindura konti yawe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 372855132200960
+    m_Localized: Igenamiterere ry'umwirondoro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 372949881528320
+    m_Localized: Gucunga igenamiterere rya konti yawe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 373103787319296
+    m_Localized: Izina ry'umuyobozi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 373278312308736
+    m_Localized: Bika impinduka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 374362816716800
+    m_Localized: Ikibaho
+    m_Metadata:
+      m_Items: []
+  - m_Id: 374428453380096
+    m_Localized: Gusohoka
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -3,14 +3,12 @@ using Firebase.Auth;
 
 public class AdminLogout : MonoBehaviour
 {
-    [Header("Navigation (assign one)")]
+    [Header("Navigation")]
     public AppNavigation appNavigation;   
     public GameObject homePanel;          
 
     [Header("Admin UI")]
     public GameObject adminRootPanel;     
-
-    [Header("Optional UI to enable when returning home")]
     public GameObject navButtonsPanel;    
 
     /// <summary>
@@ -53,7 +51,7 @@ public class AdminLogout : MonoBehaviour
             return;
         }
 
-        // Fallback: directly activate provided homePanel
+        // directly activate homePanel
         if (homePanel != null)
         {
             homePanel.SetActive(true);
@@ -64,6 +62,5 @@ public class AdminLogout : MonoBehaviour
             return;
         }
 
-        Debug.LogWarning("AdminLogout: No navigation target assigned. Assign AppNavigation or HomePanel in the Inspector.");
     }
 }

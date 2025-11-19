@@ -19,7 +19,6 @@ public class DleeteData : MonoBehaviour // DeleteData: misspelled class name to 
     }
 
     // Called via SendMessage from LoadData 
-    // Signature must be: void DeleteArtwork(string id)
     public void DeleteArtwork(string id)
     {
         if (string.IsNullOrEmpty(id))

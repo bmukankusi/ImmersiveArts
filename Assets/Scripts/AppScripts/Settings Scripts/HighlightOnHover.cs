@@ -3,16 +3,11 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 /// <summary>
-/// Highlights a TextMeshPro (3D or UGUI) text when hovered. 
-/// Works with UI (IPointerEnter/Exit) and world-space texts (OnMouseEnter/Exit — requires a Collider).
-/// Restores the original color on exit or disable.
+/// Highlights a TextMeshPro text when hovered. 
 /// </summary>
 public class HighlightOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [Tooltip("TextMeshPro component to highlight. If null the component will try to find one on this GameObject or its children.")]
     [SerializeField] private TMP_Text targetText;
-
-    [Tooltip("Color used for the highlight.")]
     [SerializeField] private Color highlightColor = Color.yellow;
 
     private Color originalColor;
@@ -36,11 +31,11 @@ public class HighlightOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     void OnDisable()
     {
-        // Ensure we restore original color when component/GO is disabled
+        // Ensure we restore original color when component is disabled
         RestoreColor();
     }
 
-    // UI hover (requires EventSystem + GraphicRaycaster)
+    // UI hover
     public void OnPointerEnter(PointerEventData eventData) => ApplyHighlight();
     public void OnPointerExit(PointerEventData eventData) => RestoreColor();
 

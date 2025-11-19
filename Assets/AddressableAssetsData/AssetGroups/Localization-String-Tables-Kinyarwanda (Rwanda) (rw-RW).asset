@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Kinyarwanda (Rwanda) (rw-RW)
   m_GUID: 99beb2e951044f945ac866f5828f23e7
   m_SerializeEntries:
+  - m_GUID: 04e8f898d9b73934dad4b7e3b1f22d10
+    m_Address: AdminGroup_rw-RW
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-rw-RW
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 44c4d13fc392b7843a83ba88a695e7c4
     m_Address: Login Table_rw-RW
     m_ReadOnly: 1
@@ -27,7 +33,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-rw-RW
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9693b40713875ea4a8b8044032240b16
     m_Address: AR Scene Table_rw-RW
@@ -41,7 +46,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-rw-RW
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3f0d1db9af4865478f5362d93e4c049
     m_Address: ImmersiveArts Table_rw-RW

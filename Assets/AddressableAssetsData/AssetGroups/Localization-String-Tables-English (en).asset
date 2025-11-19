@@ -27,7 +27,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5dee0d06065407d4f905af39cbb9304c
     m_Address: Login Table_en
@@ -41,7 +40,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f1976fb64fc262459a88ce02c263108
     m_Address: AR Scene Table_en
@@ -49,6 +47,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bbf438280b0a7248848eb0b13c68ddc
+    m_Address: AdminGroup_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: cf2627551d9399c428d5d03960238d29, type: 2}

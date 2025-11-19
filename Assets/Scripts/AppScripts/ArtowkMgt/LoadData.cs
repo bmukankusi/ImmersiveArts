@@ -29,11 +29,11 @@ public class LoadData : MonoBehaviour
     public Button deleteConfirmYesButton;
     public Button deleteConfirmNoButton;
 
-    public GameObject deleteHandlerTarget; // target for delete message; if null, uses deleteConfirmPanel or this GameObject
+    public GameObject deleteHandlerTarget; 
 
     FirebaseFirestore db;
 
-    // Track runtime-created sprites for cleanup
+    // Track runtime created sprites for cleanup
     private readonly List<Sprite> _runtimeSprites = new List<Sprite>();
 
     // Pending deletion info filled when delete button is pressed
@@ -49,43 +49,37 @@ public class LoadData : MonoBehaviour
         if (deleteConfirmPanel != null) deleteConfirmPanel.SetActive(false);
     }
 
-    void InitializeFirebaseAndLoad()
+    // Replace InitializeFirebaseAndLoad() with this async version 
+    async void InitializeFirebaseAndLoad()
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(depTask =>
+        var depStatus = await FirebaseApp.CheckAndFixDependenciesAsync();
+        if (depStatus != DependencyStatus.Available)
         {
-            var depStatus = depTask.Result;
-            if (depStatus != DependencyStatus.Available)
-            {
-                Debug.LogError($"Could not resolve all Firebase dependencies: {depStatus}");
-                return;
-            }
+            Debug.LogError($"Could not resolve all Firebase dependencies: {depStatus}");
+            return;
+        }
 
-            var auth = FirebaseAuth.DefaultInstance;
-            // If not signed in, sign in anonymously so Firestore rules that require auth succeed.
+        var auth = FirebaseAuth.DefaultInstance;
+        try
+        {
             if (auth.CurrentUser == null)
             {
-                auth.SignInAnonymouslyAsync().ContinueWithOnMainThread(signInTask =>
-                {
-                    if (signInTask.IsFaulted)
-                    {
-                        Debug.LogError("Anonymous sign-in failed: " + signInTask.Exception?.Flatten()?.Message);
-                        // Still attempt to initialize Firestore (will fail if rules require auth).
-                    }
-                    else
-                    {
-                        Debug.Log("Signed in anonymously: " + auth.CurrentUser.UserId);
-                    }
-
-                    db = FirebaseFirestore.DefaultInstance;
-                    LoadArtworks();
-                });
+                await auth.SignInAnonymouslyAsync();
+                Debug.Log("Signed in anonymously: " + auth.CurrentUser?.UserId);
             }
             else
             {
-                db = FirebaseFirestore.DefaultInstance;
-                LoadArtworks();
+                Debug.Log("Already signed in: " + auth.CurrentUser.UserId);
             }
-        });
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning("Anonymous sign-in failed: " + ex.Message);
+        }
+
+        db = FirebaseFirestore.DefaultInstance;
+        Debug.Log("Firestore initialized. Auth UID: " + FirebaseAuth.DefaultInstance.CurrentUser?.UserId);
+        LoadArtworks();
     }
 
     void ClearContent()
@@ -188,7 +182,7 @@ public class LoadData : MonoBehaviour
                         }
                     }
 
-                    // NEW: debug/log image info so you can see why images don't load
+                    // log image info so you can see why images don't load
                     Debug.Log($"Artwork {doc.Id} -> name='{name}' imageUrl='{imageUrl ?? "null"}' uiImageAssigned={(uiImage != null)}");
 
                     if (!string.IsNullOrEmpty(imageUrl) && uiImage != null)
@@ -300,7 +294,7 @@ public class LoadData : MonoBehaviour
         if (deleteConfirmNoButton != null) deleteConfirmNoButton.onClick.RemoveAllListeners();
     }
 
-    // Helper: searches the instantiated prefab and returns the first child whose tag equals requested tag
+    // searches the instantiated prefab and returns the first child whose tag equals requested tag
     Transform FindChildWithTag(Transform parent, string requestedTag)
     {
         if (parent == null || string.IsNullOrWhiteSpace(requestedTag)) return null;
@@ -313,7 +307,7 @@ public class LoadData : MonoBehaviour
         return null;
     }
 
-    // Image-only download routine (returns a Sprite assigned to Image)
+    // Image only download routine 
     IEnumerator DownloadImageRoutine(string url, Image uiImage)
     {
         if (string.IsNullOrEmpty(url) || uiImage == null)
@@ -356,8 +350,8 @@ public class LoadData : MonoBehaviour
             Sprite spr = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             uiImage.sprite = spr;
             uiImage.preserveAspect = true;
-            uiImage.enabled = true;              // ensure Image is visible
-            uiImage.type = Image.Type.Simple;    // ensure correct image type
+            uiImage.enabled = true;              
+            uiImage.type = Image.Type.Simple;    
             _runtimeSprites.Add(spr);
 
             Debug.Log($"Image downloaded and assigned: {url} (HTTP {code}) size={tex.width}x{tex.height}");

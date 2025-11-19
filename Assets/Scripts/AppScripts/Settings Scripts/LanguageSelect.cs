@@ -16,9 +16,7 @@ using UnityEngine.Localization.Settings;
 public class LanguageSelect : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown dropdown;
-
     const string PrefKey = "app_locale";
-
     private readonly (string display, string code)[] languages = new[]
     {
         ("English", "en"),
@@ -40,13 +38,13 @@ public class LanguageSelect : MonoBehaviour
 
         PopulateDropdown();
 
-        // Load saved locale (fallback to English)
+        // Load saved locale
         var saved = PlayerPrefs.GetString(PrefKey, languages[0].code);
         var initialLocale = GetLocaleByCode(saved) ?? GetLocaleByCode(languages[0].code) ?? LocalizationSettings.AvailableLocales.Locales[0];
 
         LocalizationSettings.SelectedLocale = initialLocale;
 
-        // Reflect selected locale in dropdown without triggering callback
+      
         var index = System.Array.FindIndex(languages, l => l.code == initialLocale.Identifier.Code);
         if (index < 0) index = 0;
         dropdown.SetValueWithoutNotify(index);
