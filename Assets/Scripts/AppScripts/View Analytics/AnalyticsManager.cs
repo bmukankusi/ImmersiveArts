@@ -10,7 +10,7 @@ using Firebase.Auth;
 /// <summary>
 ///  Responsible for managing analytics data collection and retrieval using Firebase Firestore.
 /// </summary>
-/// <remarks> This singleton class initializes Firebase Firestore, logs user device information, user interactions with artworks, and provides methods to retrieve aggregated analytics data for dashboard display.</remarks>
+/// <remarks> This singleton class initializes Firebase Firestore, logs user device information, user interactions with artworks, and provides methods to retrieve aggregated analytics data for dashboard display.</remarks>pl
 
 public class AnalyticsManager : MonoBehaviour
 {

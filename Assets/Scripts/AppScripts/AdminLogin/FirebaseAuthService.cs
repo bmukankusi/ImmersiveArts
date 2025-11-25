@@ -4,24 +4,19 @@ using Firebase;
 using Firebase.Auth;
 using TMPro;
 
-
-/// <summary>
-///  Provides authentication services using Firebase, including user sign in, registration, and state management.
-/// </summary>
-/// <remarks>This service is implemented as a singleton and ensures that Firebase dependencies are initialized
-/// before performing authentication operations. It manages the current user's authentication state and provides methods
-/// for signing in and registering users.</remarks>
-
 public class FirebaseAuthService : MonoBehaviour
 {
+    // Backing field for lazy singleton
     private static FirebaseAuthService _instance;
 
+    // Lazy singleton property — will find or create the service if needed.
     public static FirebaseAuthService Instance
     {
         get
         {
             if (_instance == null)
             {
+                // Try to find an existing instance in the scene
                 _instance = FindObjectOfType<FirebaseAuthService>();
                 if (_instance == null)
                 {
@@ -32,6 +27,7 @@ public class FirebaseAuthService : MonoBehaviour
                 }
                 else
                 {
+                    // Ensure the found instance persists across scenes
                     DontDestroyOnLoad(_instance.gameObject);
                 }
             }
@@ -43,12 +39,12 @@ public class FirebaseAuthService : MonoBehaviour
     public FirebaseAuth auth;
     public FirebaseUser user;
 
-    // expose last error for callers (LoginHandler) to read and show on local UI
+    // New: expose last error for callers (LoginHandler) to read and show on local UI
     public string lastErrorMessage;
 
     bool isInitializing = false;
 
-    // Public initializer 
+    // Public initializer you can call from UI or a scene controller.
     public void Initialize()
     {
         if (isInitializing || IsInitialized()) return;
@@ -69,10 +65,16 @@ public class FirebaseAuthService : MonoBehaviour
             auth.StateChanged += AuthStateChanged;
             AuthStateChanged(this, null);
             Debug.Log("Firebase initialized.");
+
+            // show diagnostic info on device/UI
+            ShowInitializationDiagnostics();
         }
         else
         {
             Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
+
+            // still show diagnostic info so you can see why init failed on device
+            ShowInitializationDiagnostics();
         }
 
         isInitializing = false;
@@ -113,7 +115,21 @@ public class FirebaseAuthService : MonoBehaviour
         }
     }
 
-    // Public wrapper to start sign in/handles initialization
+    // Small diagnostic routine: prints Firebase init status to Debug.Log and UI (if UIManager available).
+    private void ShowInitializationDiagnostics(float displaySeconds = 5f)
+    {
+        string uid = auth?.CurrentUser?.UserId ?? "null";
+        string authSet = (auth != null).ToString();
+        string msg = $"Firebase diag: dependency={dependencyStatus}, authSet={authSet}, currentUserUid={uid}";
+
+        Debug.Log(msg);
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowMessage(msg, displaySeconds);
+        }
+    }
+
+    // Public wrapper to start sign-in (handles initialization).
     public IEnumerator SignIn(string email, string password)
     {
         return EnsureInitializedThen(SignInAsync(email, password));
@@ -158,6 +174,7 @@ public class FirebaseAuthService : MonoBehaviour
                     break;
             }
 
+            // Record the last error so callers (LoginHandler) can display it in their UI
             lastErrorMessage = failedMessage;
 
             // Keep user null on failure to avoid treating anonymous/previous session as success
@@ -170,7 +187,7 @@ public class FirebaseAuthService : MonoBehaviour
         }
         else
         {
-            // success : clear last error msg and set user
+            // success -> clear lastErrorMessage and set user
             lastErrorMessage = null;
             user = loginTask.Result.User;
 
@@ -187,7 +204,7 @@ public class FirebaseAuthService : MonoBehaviour
         }
     }
 
-    // Public wrapper to start registration
+    // Public wrapper to start registration (handles initialization).
     public IEnumerator Register(string name, string email, string password, string confirmPassword)
     {
         return EnsureInitializedThen(RegisterAsync(name, email, password, confirmPassword));
@@ -195,6 +212,7 @@ public class FirebaseAuthService : MonoBehaviour
 
     private IEnumerator RegisterAsync(string name, string email, string password, string confirmPassword)
     {
+        // Existing registration logic unchanged but you may want to set lastErrorMessage on failures similarly.
         if (string.IsNullOrEmpty(name))
         {
             if (UIManager.Instance != null) UIManager.Instance.ShowMessage("User Name is empty");
@@ -220,6 +238,7 @@ public class FirebaseAuthService : MonoBehaviour
         if (registerTask.Exception != null)
         {
             Debug.LogError(registerTask.Exception);
+            // set lastErrorMessage here if desired
             if (UIManager.Instance != null)
                 UIManager.Instance.ShowMessage("Registration failed.");
             else
