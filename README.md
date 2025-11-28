@@ -29,14 +29,12 @@ https://github.com/bmukankusi/ImmersiveArts
   <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/dafa8f60-c2f2-4532-8f23-f728cf48612a" />                              <img width="412" height="917" alt="Image" src="https://github.com/user-attachments/assets/93bdb7c9-1a4c-4de2-9c19-6651d99161a0" />
   
    ### Video Recording
-   - Link to video: [https://www.canva.com/design/DAG1AeLwXOA/lCj7jjKDKUmFmjugjrfpRg/view?utm_content=DAG1AeLwXOA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h912ba33119](https://drive.google.com/file/d/1CM99plETIr3B4CC5uxvcNCxIhs4yXgt9/view?usp=sharing) 
+   - Link to video: https://drive.google.com/file/d/1Nq9e2U0zDc9IbL9VVxFz5jk7pk_3SHPa/view?usp=sharing
      
   ### App deployement
-   - Link to application package that can be installed: https://drive.google.com/file/d/1pcX8vQ-qJidV9UdzZDCEriw_KKUY_fpY/view?usp=sharing
+   - Link to APK file: https://drive.google.com/file/d/16R4J2BsaY-0Woy4cHvQ73e6NtK_LULO_/view?usp=sharing
   
    ### Deployment plan
    - Beta distribution: initial testing locally
    - Feedback collection: monitor initial usage and collect feedback about any performance issues from art gallery.
    - Documentation: create user guides/app support materials
-   - Deploying on store: set the application on Google Play Store
-   - App release for public access
