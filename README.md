@@ -10,7 +10,7 @@ https://github.com/bmukankusi/ImmersiveArts
  - Unity 6000.2.6f2 or later
  - AR Foundation
  - Firebase account
- - Android/iOS mobile device that supports AR
+ - Android mobile device that supports AR
   ### Steps
   1. Clone the repository: git clone
   2. Open the project in Unity
